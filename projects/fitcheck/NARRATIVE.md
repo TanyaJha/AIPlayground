@@ -81,8 +81,9 @@ rewrite from scratch every hunt.
 | Component | Role | Status |
 |---|---|---|
 | `capture/` | Capture lane — the Chrome extension | ✅ shipped (50 tests green) |
+| `curate/` | The Curate arm — target → swap list | 🟢 building (v0.1) |
 | `api-lane/` | Company → ATS resolver + job-board API client | next |
-| `matcher/` | The relevance engine — both directions | next |
+| `matcher/` | The shared relevance engine — both directions | next |
 | `resume/` | Master-résumé builder + the swap-list writer | next |
 
 ## Why I built this

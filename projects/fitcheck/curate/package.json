@@ -1,0 +1,16 @@
+{
+  "name": "fitcheck-curate",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Curate — fitcheck's target→capability arm. Given a target job, pull the achievements that best support it and produce a swap list.",
+  "bin": { "curate": "src/curate.js" },
+  "scripts": {
+    "curate": "node src/curate.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.70.0",
+    "zod": "^3.25.0"
+  }
+}

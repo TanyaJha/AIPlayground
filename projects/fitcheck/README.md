@@ -41,7 +41,8 @@ scores *whatever you're already looking at*.
 | Component | Role | Status |
 |---|---|---|
 | **`capture/`** | Capture lane — Chrome extension ("fitcheck Capture") that saves job tabs, captures JD text, exports for analysis | ✅ shipped (v0.6.0, 50 tests green) |
-| `matcher/` | The relevance engine (Scout + Curate) | planned |
+| **`curate/`** | The Curate arm — target → swap list. Rubric-driven Claude call ([`curate/`](./curate/)) | 🟢 building (v0.1, 10 tests green) |
+| `matcher/` | The shared relevance engine (Scout + Curate) | planned |
 | `resume/` | Master-résumé builder + the swap-list writer | planned |
 | `api-lane/` | Company → ATS resolver + job-board API client | planned |
 
