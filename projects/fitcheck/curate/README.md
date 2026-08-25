@@ -71,7 +71,7 @@ quality on a golden set, using three layers (see [`evals/rubric.md`](evals/rubri
    hallucinated ids, full coverage, legal verdicts, plus per-case certainties you
    encode in each `expect.json` ("warehouse must be OMIT for the AI-PM role").
 2. **LLM-judge** (`evals/judge.js`) — scores the [Selection rubric](evals/rubric.js)
-   (a gate + 5 dimensions, 0–5 each), adversarially, run 3× and averaged. Identity
+   (a gate + 9 dimensions, 0–5 each), adversarially, run 3× and averaged. Identity
    hidden, pairwise order randomized — to defeat position / verbosity / self-enhancement bias.
 3. **Calibration** — you hand-score a few outputs on the same rubric; trust the judge
    only once it agrees with you (~80%+). The human-in-the-loop, with teeth.

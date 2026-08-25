@@ -23,12 +23,26 @@ judge builds its prompt from that object. This doc mirrors it for humans.
 ### Dimensions — scored 0–5 each (coarse on purpose)
 1. **Valid translation** — cross-domain reframes are fair (an engineer who owned a
    recurring pain point → PM signal) *without* implying a role/scope not held.
-2. **Right things on top** — genuine best-fit achievements are ADD/PROMOTE, strongest first.
-3. **Honest & adjacent gaps** — names real gaps; offers gap-adjacent achievements over silence.
-4. **Impact & ownership reasoning** — reasons are outcome-led, driver verbs, not participation.
-5. **Recruiter-plausible** — a 6–8s skim would nod; well-known PM language, no clunky jargon.
-6. **Conciseness** — says the right thing in few words; no padding/repetition/hedging.
+2. **Technical accuracy — expert-survivable** — every domain claim survives a domain
+   expert, not just a recruiter; a reframe changes emphasis, never technical meaning.
+   *(From a real miss: don't attach a "harvest-now, decrypt-later" confidentiality
+   threat to a signature scheme — it doesn't apply there.)*
+3. **Right things on top** — genuine best-fit achievements are ADD/PROMOTE, strongest first.
+4. **Evidence spread — anti-concentration** — the shortlist shows range across products/
+   skills where the bank and target allow; one initiative shouldn't make a broad
+   candidate read as narrow. *(A genuine specialist role isn't penalized.)*
+5. **Honest & adjacent gaps** — names real gaps; offers gap-adjacent achievements over silence.
+6. **Impact & ownership reasoning** — reasons are outcome-led, driver verbs, not participation.
+7. **Proactive framing** — casts the candidate as driving/initiating (created scope, got
+   ahead of it), not reacting to a fire — where the achievement genuinely supports it.
+   Reframe initiative, never invent it.
+8. **Recruiter-plausible** — a 6–8s skim would nod; well-known PM language, no clunky jargon.
+9. **Conciseness** — says the right thing in few words; no padding/repetition/hedging.
    *Length is explicitly scored so the judge can't reward verbosity.*
+
+> Dimensions **2, 4, and 7** were derived from real résumé-curation sessions — the exact
+> judgment calls a person makes that a generic rubric misses (an expert-survivable claim,
+> a spread of evidence, a proactive vs. reactive frame). The loop feeding its own rubric.
 
 Plus an **Overall** 0–10 holistic score, allowed to diverge when one issue dominates.
 
@@ -41,7 +55,7 @@ Plus an **Overall** 0–10 holistic score, allowed to diverge when one issue dom
 ## How the rubric is used (the loop)
 
 1. **Assertions** (free, deterministic) — structural + your per-case certainties.
-2. **LLM-judge** — scores gate + the 5 dimensions + overall, adversarially, run 3× and
+2. **LLM-judge** — scores gate + the dimensions + overall, adversarially, run 3× and
    averaged. Identity hidden, order randomized (to defeat position / verbosity /
    self-enhancement bias).
 3. **Calibration** — you hand-score a few outputs on this same rubric. We only trust

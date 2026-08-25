@@ -31,11 +31,37 @@ export const DIMENSIONS = [
     zero: 'Reframes overreach: they imply seniority, ownership, or scope not evidenced.',
   },
   {
+    // Distinct from the fabrication gate: the achievement is real, but a reframe can
+    // still introduce a DOMAIN error a recruiter would miss and an expert interviewer
+    // would catch. (Drawn from a real miss: attaching a "harvest-now, decrypt-later"
+    // confidentiality threat to a signature scheme, where it does not apply.)
+    id: 'technical_accuracy',
+    name: 'Technical accuracy — expert-survivable',
+    five: 'Every domain claim in the reasons survives a domain expert, not just a ' +
+      'recruiter — technical terms are applied correctly and no capability is ' +
+      'mis-described. A reframe changes emphasis, never technical meaning.',
+    zero: 'A reframe introduces a domain error — misapplies a technical term or asserts ' +
+      'a property the work does not have (e.g. attaching a confidentiality threat to a ' +
+      'signature scheme) — the kind of thing an expert interviewer would flag.',
+  },
+  {
     id: 'right_on_top',
     name: 'Right things on top',
     five: 'The achievements that genuinely fit THIS target are the ones marked ADD/PROMOTE, ' +
       'ordered strongest-fit first.',
     zero: 'An obvious best-fit achievement is buried, mis-verdicted, or omitted.',
+  },
+  {
+    // Anti-concentration: one initiative stacking the whole shortlist makes a broad
+    // candidate read as narrow. Only fires when the bank + target actually allow breadth
+    // — a genuine specialist role, or a bank centered on one thing, is not penalized.
+    id: 'evidence_spread',
+    name: 'Evidence spread — anti-concentration',
+    five: 'The surfaced (add / promote, top-ranked) achievements show range across ' +
+      'distinct products, skills, or scopes where the bank and target allow — no single ' +
+      'initiative dominates the shortlist.',
+    zero: 'The shortlist over-concentrates on one initiative or product when the bank ' +
+      'offered relevant breadth, making the candidate look narrower than they are.',
   },
   {
     id: 'honest_gaps',
@@ -52,6 +78,19 @@ export const DIMENSIONS = [
       'shipped) — what the person did that changed the result.',
     zero: 'Reasoning is participation/ops-led ("helped with", "was involved in") or ' +
       'describes tasks rather than outcomes.',
+  },
+  {
+    // Sibling to impact_ownership but distinct: ownership is "you did it and it mattered";
+    // proactive framing is "you got ahead of it / created the scope" vs "you cleaned up
+    // after a fire". Held in check by the gate — reframe initiative, never invent it.
+    id: 'proactive_framing',
+    name: 'Proactive framing',
+    five: 'Reasons cast the candidate as driving and initiating — creating scope, ' +
+      'getting ahead of a problem — rather than reacting to a fire, where the achievement ' +
+      'genuinely supports it.',
+    zero: 'Reasons read as reactive ("responded to an escalation", "helped when X broke") ' +
+      'though the achievement supports a proactive frame — OR overreach by inventing ' +
+      'initiative the achievement does not support.',
   },
   {
     id: 'recruiter_plausible',
