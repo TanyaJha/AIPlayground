@@ -6,22 +6,25 @@ Most tools match you to a job from your résumé — a lossy compression of your
 fitcheck works from the fuller record of everything you've done, and it runs in **both
 directions.**
 
-## The two arms
+## The two directions
 
 ```
-ARM A — PUSH  (capability → market)
+SCOUT  (capability → market)
    achievements  →  jobs / target spaces  →  master résumé
    "Given everything I've done, where do I fit, and what résumé represents me there?"
 
-ARM B — PULL  (target → capability)
+CURATE  (target → capability)
    a job I want  →  check vs. achievements + résumé  →  swap experiences in / out
    "Given THIS target, pull the exact experiences that make me a strong fit."
 ```
 
-Both arms are the **same core** — a relevance engine, `score(experience, target)` — run
-with a different thing held fixed. Build the matcher once; Arm A aggregates it upward,
-Arm B runs it as a search. Output of Arm B is a concrete **swap list**: add / promote /
-demote / gap.
+Both are the **same core** — a relevance engine, `score(experience, target)` — run with a
+different thing held fixed. Build the matcher once; **Scout** aggregates it upward,
+**Curate** runs it as a search. Curate's output is a concrete **swap list**: add / promote
+/ demote / gap.
+
+> See [`NARRATIVE.md`](./NARRATIVE.md) for the full story, or the
+> [designed one-pager](https://claude.ai/code/artifact/e1648e03-4e95-4373-bc15-2d1baa5b95bf).
 
 ## Two ingestion lanes
 
@@ -38,7 +41,7 @@ scores *whatever you're already looking at*.
 | Component | Role | Status |
 |---|---|---|
 | **`capture/`** | Capture lane — Chrome extension ("fitcheck Capture") that saves job tabs, captures JD text, exports for analysis | ✅ shipped (v0.6.0, 50 tests green) |
-| `matcher/` | The relevance engine (both arms) | planned |
+| `matcher/` | The relevance engine (Scout + Curate) | planned |
 | `resume/` | Master-résumé builder + the swap-list writer | planned |
 | `api-lane/` | Company → ATS resolver + job-board API client | planned |
 

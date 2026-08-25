@@ -64,9 +64,9 @@ This is a **monorepo** — every project lives under `projects/`, each with its 
 README. The root `README.md` is the portfolio index.
 
 - `projects/fitcheck/` — **the career product.** AI copilot for the two-way fit between
-  what I've done and the roles I want. Two arms (A: achievements → jobs → master résumé;
-  B: a target job → pull the best supporting achievements → swap in/out), one relevance
-  engine, two ingestion lanes (API + capture). Personal workbench, pointed at PKI/AI
+  what I've done and the roles I want. Two directions — Scout (achievements → jobs →
+  master résumé) and Curate (a target job → pull the best supporting achievements → swap
+  in/out) — one relevance engine, two ingestion lanes (API + capture). Personal workbench, pointed at PKI/AI
   target spaces. See its README for the full vision.
   - `projects/fitcheck/capture/` — the **capture component** ("fitcheck Capture",
     Chrome MV3 extension). Detects job tabs across 83 sites, captures JD text from the
@@ -75,7 +75,7 @@ README. The root `README.md` is the portfolio index.
 - `.claude/skills/pm-loop/` — skill for designing PM loops on AI products
   (trigger → action → self-eval → output; the three loop categories; connecting loops
   to evals). Used to design the feedback loops in every product here.
-- **The two-arm relevance engine** generalizes beyond jobs — e.g. score each crypto
+- **The two-direction relevance engine** (Scout + Curate) generalizes beyond jobs — e.g. score each crypto
   asset against "quantum-vulnerable" is the same architecture, pointed at PKI work.
 
 ## Working agreements for code
