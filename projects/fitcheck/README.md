@@ -54,8 +54,12 @@ apply → outcome (response? interview?) → recalibrate what the engine surface
 competitor-watch + doc-freshness → keep the master résumé current with the market
 ```
 
-## How it fits my own hunt
+## Why I built this
 
-fitcheck is my personal workbench, pointed at **PKI / PQC / identity** target spaces.
-Using it to run my own domain job hunt is how it builds my PKI/AI résumé. It's a
-supporting exhibit in the portfolio — the PKI/PQC × AI tools are the centerpieces.
+I'm a PM learning to build with AI — taking the things I struggle with and turning them
+into tools that make my life a little simpler, and hopefully yours too. fitcheck came out
+of wanting too many things at once, and needing a way to aim at my goals with less
+overwhelm.
+
+The idea I keep coming back to: **I build the tools, then use my own tools to steer my
+work.**
