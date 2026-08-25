@@ -54,11 +54,19 @@ export const DIMENSIONS = [
       'describes tasks rather than outcomes.',
   },
   {
-    id: 'recruiter_concise',
-    name: 'Recruiter-plausible & concise',
-    five: 'A recruiter skimming for 6–8 seconds would nod. Tight, well-known PM language, ' +
-      'no clunky/internal jargon, no hedging.',
-    zero: 'Dense, jargon-heavy, or over-hedged — a recruiter would stall.',
+    id: 'recruiter_plausible',
+    name: 'Recruiter-plausible',
+    five: 'Reads in well-known PM language a recruiter skimming for 6–8 seconds would nod ' +
+      'at — no clunky, internal, or overly technical jargon.',
+    zero: 'Jargon-heavy or phrased in internal/technical terms a recruiter would stall on.',
+  },
+  {
+    id: 'conciseness',
+    name: 'Conciseness — length is not quality',
+    five: 'Says the right thing in as few words as it needs. Reasons are tight one-liners; ' +
+      'gaps are crisp. No padding, repetition, or hedging.',
+    zero: 'Bloated — verbose reasons, repetition, or hedging. A longer output is never ' +
+      'better for being longer.',
   },
 ];
 

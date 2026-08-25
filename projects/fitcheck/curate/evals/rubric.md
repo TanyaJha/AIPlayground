@@ -26,9 +26,15 @@ judge builds its prompt from that object. This doc mirrors it for humans.
 2. **Right things on top** — genuine best-fit achievements are ADD/PROMOTE, strongest first.
 3. **Honest & adjacent gaps** — names real gaps; offers gap-adjacent achievements over silence.
 4. **Impact & ownership reasoning** — reasons are outcome-led, driver verbs, not participation.
-5. **Recruiter-plausible & concise** — a 6–8s skim would nod; tight, no clunky jargon.
+5. **Recruiter-plausible** — a 6–8s skim would nod; well-known PM language, no clunky jargon.
+6. **Conciseness** — says the right thing in few words; no padding/repetition/hedging.
+   *Length is explicitly scored so the judge can't reward verbosity.*
 
 Plus an **Overall** 0–10 holistic score, allowed to diverge when one issue dominates.
+
+> **Anti-verbosity, twice over:** conciseness is a scored dimension *and* the judge's
+> system prompt states plainly that length is not quality — the two mitigations the
+> research recommends for verbosity bias.
 
 ---
 

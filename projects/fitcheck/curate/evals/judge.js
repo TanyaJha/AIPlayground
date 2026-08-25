@@ -22,16 +22,14 @@ export const JUDGE_MODEL = process.env.FITCHECK_JUDGE_MODEL || 'claude-opus-5';
 
 const dim = z.object({ score: z.number().int().min(0).max(5), note: z.string() });
 
+// Build the per-dimension score shape FROM the rubric, so the judge schema can
+// never drift out of sync with rubric.js.
+const scoresShape = Object.fromEntries(DIMENSIONS.map((d) => [d.id, dim]));
+
 export const JudgeVerdict = z.object({
   gate_pass: z.boolean(),
   gate_note: z.string(),
-  scores: z.object({
-    valid_translation: dim,
-    right_on_top: dim,
-    honest_gaps: dim,
-    impact_ownership: dim,
-    recruiter_concise: dim,
-  }),
+  scores: z.object(scoresShape),
   overall: z.number().min(0).max(10),
   top_issue: z.string(),
 });
@@ -52,7 +50,11 @@ const JUDGE_SYSTEM = `You are a skeptical hiring-side reviewer grading a tool th
 candidate's achievements to surface for a specific role. Your job is to find problems,
 not to be encouraging. Be strict. If the output fabricates experience or asserts a
 metric that wasn't given, fail the gate outright. You are not told which system or
-version produced the output; judge only what is in front of you.`;
+version produced the output; judge only what is in front of you.
+
+Length is not quality. A longer or more elaborate output is not better for being longer —
+penalize padding, repetition, and hedging, and reward saying the right thing in fewer
+words. Do not let verbosity raise any score.`;
 
 function buildJudgeUser({ jobText, achievements, resumeText, result }) {
   return [
