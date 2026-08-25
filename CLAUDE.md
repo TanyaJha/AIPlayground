@@ -32,9 +32,10 @@ live here.
 
 **The portfolio pipeline:**
 
-1. **Job Tab Collector** — *personal workbench, shipped.* An AI-assisted tool for my
-   own job hunt (see `job-tab-collector/`). Solves a real, persistent problem for me
-   and others; outlives any single role. Pointed at PKI/AI target spaces, using it
+1. **fitcheck** — *personal workbench, building in public.* An AI copilot for the
+   two-way fit between what I've done and the roles I want (see `projects/fitcheck/`).
+   Its capture component is shipped. Solves a real, persistent problem for me and
+   others; outlives any single role. Pointed at PKI/AI target spaces, using it
    *builds my PKI/AI resume.* Supporting exhibit, not the centerpiece.
 2. **Six PKI/PQC × AI ideas** — *the centerpieces, next.* (To be logged in
    `ideas/`.) These carry the moat and are the primary hireability signal.
@@ -67,10 +68,10 @@ README. The root `README.md` is the portfolio index.
   B: a target job → pull the best supporting achievements → swap in/out), one relevance
   engine, two ingestion lanes (API + capture). Personal workbench, pointed at PKI/AI
   target spaces. See its README for the full vision.
-  - `projects/fitcheck/tab-collector/` — the **capture component** (Chrome MV3
-    extension). Detects job tabs across 83 sites, captures JD text from the
+  - `projects/fitcheck/capture/` — the **capture component** ("fitcheck Capture",
+    Chrome MV3 extension). Detects job tabs across 83 sites, captures JD text from the
     authenticated DOM where AI fetch is blocked, distills, exports for résumé-fit
-    analysis. One component of fitcheck, not the whole product.
+    analysis. One component of fitcheck (the capture lane), not the whole product.
 - `.claude/skills/pm-loop/` — skill for designing PM loops on AI products
   (trigger → action → self-eval → output; the three loop categories; connecting loops
   to evals). Used to design the feedback loops in every product here.

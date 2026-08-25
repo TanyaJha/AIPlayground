@@ -29,7 +29,7 @@ aiplayground/
 ├── CLAUDE.md            # mission, thesis, operating contract — read this first
 ├── projects/           # the products, one folder each, each with its own README
 │   └── fitcheck/        # the career product
-│       └── tab-collector/   # its capture component (Chrome extension)
+│       └── capture/     # its capture component (Chrome extension)
 ├── .claude/skills/     # reusable skills (pm-loop)
 └── pm-log/             # loop tracking (as it accrues)
 ```

@@ -28,7 +28,7 @@ demote / gap.
 | Lane | Covers | How |
 |---|---|---|
 | **API lane** | Greenhouse, Lever, Ashby, SmartRecruiters | Public no-auth job-board APIs. Enumerate *all* roles at a target company. Powers company-first discovery. |
-| **Capture lane** | LinkedIn, Indeed, Workday, Amazon (53 of 83 sites) | Reads the authenticated DOM from inside the browser — works where AI fetch is blocked. This is `tab-collector`. |
+| **Capture lane** | LinkedIn, Indeed, Workday, Amazon (53 of 83 sites) | Reads the authenticated DOM from inside the browser — works where AI fetch is blocked. This is `capture/`. |
 
 Complementary: the API lane goes *deep on companies you're targeting*; the capture lane
 scores *whatever you're already looking at*.
@@ -37,7 +37,7 @@ scores *whatever you're already looking at*.
 
 | Component | Role | Status |
 |---|---|---|
-| **`tab-collector/`** | Capture lane — Chrome extension that saves job tabs, captures JD text, exports for analysis | ✅ shipped (v0.6.0, 50 tests green) |
+| **`capture/`** | Capture lane — Chrome extension ("fitcheck Capture") that saves job tabs, captures JD text, exports for analysis | ✅ shipped (v0.6.0, 50 tests green) |
 | `matcher/` | The relevance engine (both arms) | planned |
 | `resume/` | Master-résumé builder + the swap-list writer | planned |
 | `api-lane/` | Company → ATS resolver + job-board API client | planned |

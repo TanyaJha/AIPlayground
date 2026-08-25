@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Job Tab Collector",
+  "name": "fitcheck Capture",
   "version": "0.6.0",
-  "description": "Collect job postings from your open tabs into a saved list, then export them as a file to hand to Claude or ChatGPT.",
+  "description": "Capture job postings from your open tabs — including sites AI can't fetch — into a saved list, then export them for résumé-fit analysis.",
   "permissions": [
     "tabs",
     "storage",
@@ -15,7 +15,7 @@
     "https://*/*"
   ],
   "action": {
-    "default_title": "Job Tab Collector",
+    "default_title": "fitcheck Capture",
     "default_popup": "src/popup/popup.html",
     "default_icon": {
       "16": "icons/icon16.png",

@@ -1,4 +1,7 @@
-# Job Tab Collector
+# fitcheck Capture
+
+> The **capture lane** of [fitcheck](../) — one of two ingestion lanes (the other is
+> the ATS API lane). This is the component that works on sites an AI cannot fetch.
 
 A Chrome extension that turns your open job-posting tabs into a saved shortlist,
 then exports it as a file you can hand to Claude or ChatGPT along with your
@@ -76,7 +79,7 @@ need one.
 1. Open `chrome://extensions`
 2. Turn on **Developer mode** (top-right toggle)
 3. Click **Load unpacked**
-4. Select the `job-tab-collector/` folder
+4. Select the `capture/` folder
 5. Pin it from the puzzle-piece menu so it's one click away
 
 Works in Chrome, Edge, Brave, Arc, and Opera — anything Chromium-based.
@@ -271,7 +274,7 @@ rule means your job tabs don't get pre-checked — so they're worth pinning down
 No Chrome APIs are touched, so it all runs in plain Node.
 
 ```
-job-tab-collector/
+capture/
 ├── manifest.json           # MV3
 ├── src/
 │   ├── background.js       # service worker: badge, downloads, the fetch batch
