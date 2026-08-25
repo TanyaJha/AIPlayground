@@ -1,0 +1,23 @@
+# Build / packaging
+*.zip
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Local scratch
+scratch/
+*.local.*
+
+# e2e artifacts
+test/screenshots/
