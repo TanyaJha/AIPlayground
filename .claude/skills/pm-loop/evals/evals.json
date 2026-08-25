@@ -1,0 +1,44 @@
+{
+  "skill_name": "pm-loop",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm building an AI job matcher. It reads my achievements.md and scores job listings for fit. I want to set up some kind of loop so that when I apply to a job and don't hear back, that signal helps improve the scoring. How do I structure this?",
+      "expected_output": "Identifies this as a win/loss + prompt-improvement loop combination. Fills out the full TRIGGER/ACTION/SELF-EVAL/OUTPUT anatomy. Recommends building outcome capture before improving the scorer. Gives a concrete first step for this week.",
+      "files": [],
+      "assertions": [
+        "Names a specific loop type (win/loss or outcome loop or similar) — not generic advice",
+        "Writes out the TRIGGER / ACTION / SELF-EVAL / OUTPUT anatomy explicitly",
+        "Recommends capturing the outcome signal (applied Y/N, response Y/N) as the first build step",
+        "Gives a concrete actionable next step, not a list of options",
+        "Mentions connecting outcome data back to scoring — the feedback-as-engine concept"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "my prompt for picking resume bullets keeps producing mediocre results. i've tried tweaking it a few times but i can't tell if it's actually getting better or if i'm just fooling myself. what loop should i set up?",
+      "expected_output": "Immediately identifies this as a prompt-improvement loop. Explains that the user needs evals before they can know if the prompt improved. Gives a concrete LLM-as-judge rubric design. Explains the loop anatomy for prompt improvement. Does not give a list of 5 options.",
+      "files": [],
+      "assertions": [
+        "Names 'prompt-improvement loop' specifically — not a generic feedback loop",
+        "Points out that the user needs evals (golden test set) to measure improvement — this is the root cause",
+        "Provides or describes a concrete LLM judge rubric (not just 'rate 1-5')",
+        "Writes the loop anatomy: trigger → run evals → rewrite prompt → re-eval → compare delta → stop condition",
+        "Gives a specific stop condition (e.g. pass rate threshold, not 'until it feels good')"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm a PM on an AI writing assistant. We ship updates every 2 weeks. I want to set up loops across our whole product process — discovery, building, and staying on top of things. Where do I even start? I feel like there's too much to do at once.",
+      "expected_output": "Diagnoses the situation (overwhelmed, wants full-stack loops). Recommends starting with ONE loop — the prompt-improvement or ship-check loop for Build & Ship since they're already shipping. Explains all three categories but is opinionated about prioritization. Does not dump all 20+ loops on the user.",
+      "files": [],
+      "assertions": [
+        "Does not list all 20+ loops — is selective and opinionated",
+        "Recommends starting with exactly one loop, not three",
+        "Explains the three categories (Product & Discovery, Build & Ship, Personal & Ops) briefly",
+        "Justifies the recommended starting loop with a reason tied to the user's context (2-week ship cadence)",
+        "Ends with a concrete this-week action, not a framework overview"
+      ]
+    }
+  ]
+}
