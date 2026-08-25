@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Job Tab Collector</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Job Tab Collector <span class="version" id="version"></span></h1>
+    <nav class="tabs" role="tablist">
+      <button class="tab-btn is-active" data-view="tabs" role="tab">Open tabs</button>
+      <button class="tab-btn" data-view="saved" role="tab">
+        Saved <span class="pill" id="saved-count">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ============ OPEN TABS VIEW ============ -->
+  <section id="view-tabs" class="view">
+    <div class="toolbar">
+      <label class="checkbox-inline">
+        <input type="checkbox" id="show-all-tabs">
+        <span>Show non-job tabs</span>
+      </label>
+      <div class="toolbar-actions">
+        <button class="link-btn" id="select-all">All</button>
+        <button class="link-btn" id="select-none">None</button>
+      </div>
+    </div>
+
+    <div id="tab-list" class="list" role="group" aria-label="Open tabs"></div>
+
+    <p class="empty" id="tabs-empty" hidden>
+      No job postings found in your open tabs.
+      <br><span class="muted">Tick "Show non-job tabs" to see everything.</span>
+    </p>
+
+    <div class="capture-bar">
+      <label for="auto-capture">On save, grab text for</label>
+      <select id="auto-capture">
+        <option value="unfetchable">unfetchable roles</option>
+        <option value="all">all roles</option>
+        <option value="off">nothing</option>
+      </select>
+    </div>
+
+    <footer class="footer">
+      <span class="status" id="tabs-status"></span>
+      <button class="primary" id="save-selected" disabled>Save selected</button>
+    </footer>
+  </section>
+
+  <!-- ============ SAVED VIEW ============ -->
+  <section id="view-saved" class="view" hidden>
+    <div id="saved-list" class="list" aria-label="Saved jobs"></div>
+
+    <p class="empty" id="saved-empty" hidden>
+      Nothing saved yet.
+      <br><span class="muted">Grab some postings from the Open tabs view.</span>
+    </p>
+
+    <div class="capture-bar">
+      <button class="secondary" id="capture-btn">Fetch missing text</button>
+      <button class="link-btn" id="refetch-btn" title="Re-read every page from scratch">Re-fetch all</button>
+      <button class="link-btn danger" id="cancel-btn" hidden>Cancel</button>
+      <select id="capture-length" title="How much of each description to keep">
+        <option value="2500">Short</option>
+        <option value="6000" selected>Medium</option>
+        <option value="15000">Full</option>
+      </select>
+      <label class="checkbox-inline" title="Drop company blurb, benefits, and EEO boilerplate; keep responsibilities and qualifications">
+        <input type="checkbox" id="trim-boilerplate" checked>
+        <span>Trim fluff</span>
+      </label>
+      <span class="status" id="capture-status"></span>
+    </div>
+
+    <div class="export-panel">
+      <div class="field">
+        <label for="prompt-mode">Prompt</label>
+        <select id="prompt-mode">
+          <option value="rank">Rank these by fit</option>
+          <option value="tailor">Tailor my resume</option>
+          <option value="none">No prompt — data only</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="export-format">Format</label>
+        <select id="export-format">
+          <option value="markdown">Markdown (.md)</option>
+          <option value="json">JSON (.json)</option>
+          <option value="urls">URLs only (.txt)</option>
+        </select>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <button class="link-btn danger" id="clear-all">Clear all</button>
+      <span class="status" id="saved-status"></span>
+      <button class="primary" id="export-btn" disabled>Export file</button>
+    </footer>
+  </section>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
