@@ -16,15 +16,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Anthropic from '@anthropic-ai/sdk';
-import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
 
 import { parseAchievements } from './achievements.js';
-import { buildUserMessage, SYSTEM } from './prompt.js';
-import { CurateResult } from './schema.js';
+import { runCurate, DEFAULT_MODEL } from './engine.js';
 import { renderResult } from './format.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const MODEL = process.env.FITCHECK_MODEL || 'claude-opus-5';
+const MODEL = DEFAULT_MODEL;
 
 function parseArgs(argv) {
   const args = { job: null, achievements: null, resume: null, json: false };
@@ -116,20 +114,9 @@ async function main() {
     );
   }
 
-  const client = new Anthropic();
   let result;
   try {
-    const response = await client.messages.parse({
-      model: MODEL,
-      max_tokens: 16000,
-      system: SYSTEM,
-      messages: [
-        { role: 'user', content: buildUserMessage({ achievements, jobText, resumeText }) },
-      ],
-      output_config: { format: zodOutputFormat(CurateResult) },
-    });
-    result = response.parsed_output;
-    if (!result) fail('The model did not return a valid result. Try re-running.');
+    result = await runCurate({ achievements, jobText, resumeText, model: MODEL });
   } catch (err) {
     if (err instanceof Anthropic.AuthenticationError) fail('Invalid API key.');
     if (err instanceof Anthropic.RateLimitError) fail('Rate limited — wait a moment and retry.');

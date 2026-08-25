@@ -3,3 +3,6 @@ package-lock.json
 npm-debug.log*
 .DS_Store
 *.local.*
+
+# per-run eval dumps (bulky); eval-history.json is kept as the memory
+evals/results/

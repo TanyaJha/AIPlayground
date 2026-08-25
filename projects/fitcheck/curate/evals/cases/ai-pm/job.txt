@@ -1,0 +1,18 @@
+Senior AI Product Manager — Developer Platform
+
+We're hiring a Senior PM to own our AI developer tools. You'll define the roadmap for
+LLM-powered features, work closely with engineering on evaluation and quality, and
+ship fast without breaking trust.
+
+What you'll do
+- Own the product strategy for AI features across the platform
+- Build and champion evaluation systems so we ship AI quality on evidence
+- Partner with infra teams on reliable, secure rollout of new services
+- Turn ambiguous problems into crisp specs and measurable outcomes
+
+What we're looking for
+- 5+ years in product management, some of it on technical/developer products
+- Hands-on comfort with LLMs, prompting, and AI evaluation
+- Experience shipping on cloud infrastructure (Kubernetes a plus)
+- Strong sense for security and reliability
+- Bonus: you've built your own tools / prototypes

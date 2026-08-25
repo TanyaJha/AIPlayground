@@ -1,0 +1,13 @@
+{
+  "id": "ai-pm",
+  "job": "job.txt",
+  "resume": null,
+  "note": "Good-fit AI PM role using the sample bank. She should read as strong.",
+  "expect": {
+    "weakFit": false,
+    "minStrong": 2,
+    "minRelevance": { "built-an-llm-evaluation-harness": 4 },
+    "maxRelevance": { "optimized-a-warehouse-picking-route": 2 },
+    "mustVerdict": { "optimized-a-warehouse-picking-route": ["omit"] }
+  }
+}

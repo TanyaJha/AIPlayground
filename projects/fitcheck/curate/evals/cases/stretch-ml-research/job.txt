@@ -1,0 +1,16 @@
+Staff Machine Learning Research Engineer — Foundation Models
+
+You'll do original research on large-scale model training and publish it. This is a
+deep-IC research role, not a product role.
+
+What you'll do
+- Design and run experiments on transformer architectures and training objectives
+- Own model pretraining infrastructure at thousands-of-GPU scale
+- Write CUDA / Triton kernels to squeeze throughput
+- Publish at top ML venues (NeurIPS, ICML, ICLR)
+
+What we're looking for
+- PhD in ML or equivalent research record, with first-author publications
+- Deep PyTorch internals; distributed training (FSDP, megatron-style parallelism)
+- Strong grasp of optimization theory and modern architectures
+- Track record of novel research contributions
