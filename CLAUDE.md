@@ -59,17 +59,23 @@ live here.
 
 ## What exists
 
-- `job-tab-collector/` — Chrome extension (MV3). Detects job tabs across 83 sites,
-  saves/dedupes a shortlist, captures full JD text from the authenticated DOM (works
-  where AI fetch is blocked — LinkedIn/Workday/Indeed), distills, and exports a
-  prompt-headed file for resume-fit analysis. Personal workbench.
+This is a **monorepo** — every project lives under `projects/`, each with its own
+README. The root `README.md` is the portfolio index.
+
+- `projects/fitcheck/` — **the career product.** AI copilot for the two-way fit between
+  what I've done and the roles I want. Two arms (A: achievements → jobs → master résumé;
+  B: a target job → pull the best supporting achievements → swap in/out), one relevance
+  engine, two ingestion lanes (API + capture). Personal workbench, pointed at PKI/AI
+  target spaces. See its README for the full vision.
+  - `projects/fitcheck/tab-collector/` — the **capture component** (Chrome MV3
+    extension). Detects job tabs across 83 sites, captures JD text from the
+    authenticated DOM where AI fetch is blocked, distills, exports for résumé-fit
+    analysis. One component of fitcheck, not the whole product.
 - `.claude/skills/pm-loop/` — skill for designing PM loops on AI products
   (trigger → action → self-eval → output; the three loop categories; connecting loops
   to evals). Used to design the feedback loops in every product here.
-- **The two-arm relevance engine** (concept) — one matcher, run two directions:
-  Arm A (achievements → jobs → master resume) and Arm B (a target job → pull the best
-  supporting achievements → swap in/out). The same architecture generalizes to PKI
-  work (e.g. score each crypto asset against "quantum-vulnerable").
+- **The two-arm relevance engine** generalizes beyond jobs — e.g. score each crypto
+  asset against "quantum-vulnerable" is the same architecture, pointed at PKI work.
 
 ## Working agreements for code
 

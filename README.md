@@ -1,32 +1,37 @@
 # AIPlayground
 
-> A personal space to build and vibe-code things that make life easier.
+> A public workshop where I build AI tools as a PM — combining deep PKI / identity /
+> post-quantum domain expertise with hands-on AI building.
 
-## About
+This is a **monorepo**: every project lives here, each self-contained with its own
+README. The through-line is [`CLAUDE.md`](./CLAUDE.md) — the mission, thesis, and how
+I work.
 
-AIPlayground is a sandbox repository for experimenting with AI-powered tools, scripts, and mini-projects. It's a place to prototype ideas quickly and iterate without friction.
+## Projects
 
-## Structure
+| Project | What it is | Status |
+|---|---|---|
+| [**fitcheck**](./projects/fitcheck/) | AI copilot for the two-way fit between what you've done and the roles you want. Personal job-hunt workbench. | 🟢 building — capture component shipped |
+| **PKI / PQC × AI** | The centerpieces: AI tooling for post-quantum migration, PKI posture, and certificate infrastructure. | 🟡 next — ideas incoming |
+
+## Skills
+
+Reusable playbooks that make the building repeatable (in [`.claude/skills/`](./.claude/skills/)):
+
+| Skill | What it does |
+|---|---|
+| [**pm-loop**](./.claude/skills/pm-loop/) | Design PM feedback loops for AI products — trigger → action → self-eval → output, connected to evals. |
+
+## How this repo is organized
 
 ```
-AIPlayground/
-├── README.md   # You are here
-└── ...         # Projects and experiments live here
+aiplayground/
+├── CLAUDE.md            # mission, thesis, operating contract — read this first
+├── projects/           # the products, one folder each, each with its own README
+│   └── fitcheck/        # the career product
+│       └── tab-collector/   # its capture component (Chrome extension)
+├── .claude/skills/     # reusable skills (pm-loop)
+└── pm-log/             # loop tracking (as it accrues)
 ```
 
-## Getting Started
-
-Clone the repo and explore:
-
-```bash
-git clone https://github.com/TanyaJha/AIPlayground.git
-cd AIPlayground
-```
-
-## Contributing
-
-This is a personal playground — feel free to open issues or PRs if something sparks an idea!
-
-## License
-
-MIT
+Built in public, one thing at a time, deep over broad.
