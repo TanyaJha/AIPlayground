@@ -11,7 +11,7 @@ I work.
 
 | Project | What it is | Status |
 |---|---|---|
-| [**fitcheck**](./projects/fitcheck/) | The evidence + evaluation layer for a job search (complement to [career-ops](https://github.com/santifer/career-ops), which owns discovery): a reverse-match **Curate** engine, an **eval** harness, and an outcome loop. Personal job-hunt workbench. | 🟢 building — capture shipped; curate + loop in |
+| [**fitcheck**](./projects/fitcheck/) | The evidence + evaluation layer for a job search (complement to [career-ops](https://github.com/santifer/career-ops), which owns discovery): a graded achievement bank → Curate → grade → tailor → track → stories. Personal job-hunt workbench. | 🟢 complete & usable ([USAGE](./projects/fitcheck/USAGE.md)); capture archived |
 | **PKI / PQC × AI** | The centerpieces: AI tooling for post-quantum migration, PKI posture, and certificate infrastructure. | 🟡 next — ideas incoming |
 
 ## Skills
@@ -21,6 +21,7 @@ Reusable playbooks that make the building repeatable (in [`.claude/skills/`](./.
 | Skill | What it does |
 |---|---|
 | [**pm-loop**](./.claude/skills/pm-loop/) | Design PM feedback loops for AI products — trigger → action → self-eval → output, connected to evals. |
+| [**fitcheck**](./.claude/skills/fitcheck/) | Front door — routes to the right fitcheck skill and walks setup (see [USAGE](./projects/fitcheck/USAGE.md)). |
 | [**fitcheck-curate**](./.claude/skills/fitcheck-curate/) | Reverse-match a target JD against your achievement bank → a swap list (add/promote/keep/demote + gaps). |
 | [**fitcheck-grade**](./.claude/skills/fitcheck-grade/) | Grade a Curate output against the Selection rubric — fabrication gate + 9 judge dimensions, run 3×. |
 | [**fitcheck-track**](./.claude/skills/fitcheck-track/) | Log applications for the outcome loop; attribute results back to the evidence + framing that was used. |
