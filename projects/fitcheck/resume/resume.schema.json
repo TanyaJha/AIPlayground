@@ -2,14 +2,21 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/TanyaJha/AIPlayground/projects/fitcheck/resume/resume.schema.json",
   "title": "Résumé spec",
-  "description": "The structured input to the fitcheck renderer (render.js). A projection of the achievement bank for one target: header + summary + experience (roles with bullets) + optional projects, skills, education. Inline **bold** is supported in any text field. Em dashes are forbidden and rejected at render time.",
+  "description": "The structured input to the fitcheck renderer (render.js). A projection of the achievement bank for one target. Flows to one or two pages. Inline **bold** is supported in any text field. Em dashes are forbidden and rejected at render time.",
   "type": "object",
   "additionalProperties": false,
   "required": ["name", "experience"],
   "properties": {
     "name": { "type": "string" },
-    "contact": { "type": "string", "description": "Single line, middot-separated: 'City · email · phone · linkedin · github'." },
-    "summary": { "type": "string", "description": "One bold-ish sentence. Supports **bold**." },
+    "headline": { "type": "string", "description": "Optional title line under the name, e.g. 'Senior Product Manager | Generative AI, Agents & Enterprise Platforms'." },
+    "contact": { "type": "string", "description": "Single line, middot-separated." },
+    "summary": { "type": "string", "description": "One strong sentence. Supports **bold**." },
+    "coreExpertiseHeading": { "type": "string", "default": "Core Expertise" },
+    "coreExpertise": {
+      "type": "array",
+      "description": "Categorized skills shown near the top (before Experience).",
+      "items": { "type": "object", "additionalProperties": false, "required": ["label", "text"], "properties": { "label": { "type": "string" }, "text": { "type": "string" } } }
+    },
     "experienceHeading": { "type": "string", "default": "Experience" },
     "experience": {
       "type": "array",
@@ -19,23 +26,30 @@
         "additionalProperties": false,
         "required": ["org"],
         "properties": {
-          "org": { "type": "string", "description": "e.g. 'Microsoft · Senior Product Manager, Active Directory · Redmond, WA'." },
+          "org": { "type": "string", "description": "Employer + location, e.g. 'Microsoft · Redmond, WA'." },
           "dates": { "type": "string" },
-          "subline": { "type": "string", "description": "Optional italic scope line under the role." },
-          "bullets": { "type": "array", "items": { "type": "string" }, "description": "Each supports **bold**. Usually a chosen framing from a bank entry." }
+          "title": { "type": "string", "description": "Role title held within the org." },
+          "titleDates": { "type": "string" },
+          "promotion": { "type": "string", "description": "Muted line, e.g. 'Promoted twice in 20 months: PM II 2025, TPM II 2024'." },
+          "subline": { "type": "string", "description": "Optional italic scope line." },
+          "bullets": { "type": "array", "items": { "type": "string" }, "description": "Full verb-led sentences, usually a chosen framing from a bank entry." }
         }
       }
+    },
+    "sections": {
+      "type": "array",
+      "description": "Generic extra sections after Experience, e.g. Selected Recognition & Leadership.",
+      "items": { "type": "object", "additionalProperties": false, "required": ["heading", "bullets"], "properties": { "heading": { "type": "string" }, "bullets": { "type": "array", "items": { "type": "string" } } } }
     },
     "projects": { "type": "array", "items": { "type": "string" } },
     "skills": {
       "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["label", "text"],
-        "properties": { "label": { "type": "string" }, "text": { "type": "string" } }
-      }
+      "items": { "type": "object", "additionalProperties": false, "required": ["label", "text"], "properties": { "label": { "type": "string" }, "text": { "type": "string" } } }
     },
-    "education": { "type": "array", "items": { "type": "string" } }
+    "education": {
+      "type": "array",
+      "description": "Each item is a string (rendered as a bullet) or {text, note} where note is a muted sub-line (honors, leadership).",
+      "items": { "oneOf": [ { "type": "string" }, { "type": "object", "additionalProperties": false, "required": ["text"], "properties": { "text": { "type": "string" }, "note": { "type": "string" } } } ] }
+    }
   }
 }

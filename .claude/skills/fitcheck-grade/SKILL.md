@@ -48,7 +48,14 @@ When grading the output that will actually be sent, capture the scores as
 high judge score correlate with a real callback?* — the calibration that turns the judge from
 plausible to trusted. Until then: **never confuse "judge says 4/5" with "it worked."**
 
-## Scope note
-Today `/grade` covers the **Selection rubric** (Curate swap lists). Grading **referrals** has
-its own rubric, specified but not built — see `projects/fitcheck/curate/evals/BACKLOG.md`.
+## Scope note — two rubrics
+`/grade` covers two rubrics, applied to different things:
+- **Selection rubric** (`evals/rubric.js`) — grades a Curate **swap list**: *which* achievements
+  to surface. This is what the automated `evals/run.js` harness scores.
+- **Rendering rubric** (`evals/rendering-rubric.js`) — grades **résumé prose**: how each bullet
+  reads (full verb-led sentences, concrete substance, no label-colon fragments, no padding).
+  Its gate **fails a guardrail leak** — an internal figure where "eight-figure" was required, a
+  rejected framing, or an estimate stated as fact. Apply it to a rendered résumé or bullet set.
+
+Grading **referrals** has its own rubric, specified but not built — see `evals/BACKLOG.md`.
 When asked to grade a referral, apply that spec's dimensions by hand and say it's pre-harness.

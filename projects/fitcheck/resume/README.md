@@ -4,7 +4,13 @@
 > `/curate` + the bank choose *what* to say; this renders it.
 
 One engine replaces per-résumé scripts. Single column, real text, no tables (ATS-safe),
-Calibri, US Letter, tight one-page margins. Inline `**bold**` is supported in any text field.
+Calibri, US Letter. Flows to **one or two pages** as the content needs — a tight one-page cut
+or a full two-page master (headline, Core Expertise, richer roles, a recognition section,
+honors). Inline `**bold**` is supported in any text field.
+
+How each bullet *reads* is graded separately by the
+[Rendering rubric](../curate/evals/rendering-rubric.md) via `/grade` — full verb-led sentences,
+concrete, guardrail-safe. The renderer handles layout; the rubric handles prose.
 
 ## The one hard rule it enforces
 **No em dashes.** `render.js` scans the spec and *fails loudly* if it finds `—`, naming the
