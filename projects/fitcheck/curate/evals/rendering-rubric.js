@@ -65,6 +65,24 @@ export const DIMENSIONS = [
     five: 'Full-bodied but every word earns its place; no filler, hedging, or repetition.',
     zero: 'Wordy or repetitive; length that does not add information.',
   },
+  {
+    // Learned from a candidate's own finalized résumé: their strongest instinct was to prune
+    // every bullet to a single clean point.
+    id: 'one_idea',
+    name: 'One idea per bullet',
+    five: 'Each bullet lands a single clean point; secondary clauses and stapled-on lists ' +
+      '(feature enumerations, "also shipped X", trailing metrics) are pruned. The reader takes ' +
+      'away one thing.',
+    zero: 'Bullets cram two or more achievements or trail a list that dilutes the point.',
+  },
+  {
+    id: 'domain_fluent',
+    name: 'Domain-fluent',
+    five: 'Acronyms are defined inline once and then reused (e.g. post-quantum cryptography ' +
+      '(PQC), then PQC); insider terms are used correctly and confidently, reading as a ' +
+      'practitioner rather than someone explaining the field to outsiders.',
+    zero: 'Over-explains basics a domain reader knows, spells terms out every time, or misuses shorthand.',
+  },
 ];
 
 export const OVERALL = {

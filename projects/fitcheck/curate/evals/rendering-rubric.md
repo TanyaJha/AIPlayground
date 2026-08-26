@@ -25,7 +25,12 @@ candidate had explicitly rejected.)
 4. **Impact-forward (XYZ)** — strong action, result present (did X using Y, led to Z).
 5. **Reads like a person wrote it** — natural rhythm, varied verbs, no template feel.
 6. **No padding** — full-bodied but every word earns its place.
+7. **One idea per bullet** — a single clean point; secondary clauses and stapled-on lists are
+   pruned (learned from a candidate's own finalized résumé, where this was the strongest instinct).
+8. **Domain-fluent** — acronyms defined inline once then reused (PQC, AD FS, SoA); insider terms
+   used confidently, reading as a practitioner, not an explainer.
 
 > **3 and 6 are in deliberate tension** — full-bodied vs. no padding — so "richer" can't become
-> "bloated" and "tight" can't become "clipped". That tension is the fix for the original
+> "bloated" and "tight" can't become "clipped". **7 (one idea)** is the counterweight to 3 that
+> keeps "full-bodied" from becoming "crammed". That tension is the fix for the original
 > over-compression.
