@@ -32,10 +32,10 @@ live here.
 
 **The portfolio pipeline:**
 
-1. **fitcheck** — *personal workbench, building in public.* An AI copilot for the
-   two-way fit between what I've done and the roles I want (see `projects/fitcheck/`).
-   Its capture component is shipped. Solves a real, persistent problem for me and
-   others; outlives any single role. Pointed at PKI/AI target spaces, using it
+1. **fitcheck** — *personal workbench, built in public.* The evidence + evaluation layer
+   for a job search: a graded, in-my-voice achievement bank that every résumé, bullet, and
+   interview story is a projection of (see `projects/fitcheck/USAGE.md`). Complete and
+   usable. Solves a real, persistent problem; pointed at PKI/AI target spaces, using it
    *builds my PKI/AI resume.* Supporting exhibit, not the centerpiece.
 2. **Six PKI/PQC × AI ideas** — *the centerpieces, next.* (To be logged in
    `ideas/`.) These carry the moat and are the primary hireability signal.
@@ -63,20 +63,26 @@ live here.
 This is a **monorepo** — every project lives under `projects/`, each with its own
 README. The root `README.md` is the portfolio index.
 
-- `projects/fitcheck/` — **the career product.** AI copilot for the two-way fit between
-  what I've done and the roles I want. Two directions — Scout (achievements → jobs →
-  master résumé) and Curate (a target job → pull the best supporting achievements → swap
-  in/out) — one relevance engine, two ingestion lanes (API + capture). Personal workbench, pointed at PKI/AI
-  target spaces. See its README for the full vision.
-  - `projects/fitcheck/capture/` — the **capture component** ("fitcheck Capture",
-    Chrome MV3 extension). Detects job tabs across 83 sites, captures JD text from the
-    authenticated DOM where AI fetch is blocked, distills, exports for résumé-fit
-    analysis. One component of fitcheck (the capture lane), not the whole product.
-- `.claude/skills/pm-loop/` — skill for designing PM loops on AI products
-  (trigger → action → self-eval → output; the three loop categories; connecting loops
-  to evals). Used to design the feedback loops in every product here.
-- **The two-direction relevance engine** (Scout + Curate) generalizes beyond jobs — e.g. score each crypto
-  asset against "quantum-vulnerable" is the same architecture, pointed at PKI work.
+- `projects/fitcheck/` — **the career product, complete and usable** (start at
+  `projects/fitcheck/USAGE.md`). The **evidence + evaluation** layer for a job search;
+  discovery is delegated to [career-ops](https://github.com/santifer/career-ops) (see
+  `projects/fitcheck/SCOUT.md`). The pipeline: a graded achievement **bank** (source of
+  truth) → **Curate** (reverse-match a JD → swap list) → **grade** (fabrication gate + a
+  Selection rubric and a Rendering rubric) → **tailor** (render an ATS-safe .docx) →
+  **track** (the outcome-aware Win/Loss loop) → **stories** (interview prep). Components:
+  `capture/` (Chrome MV3 extension, shipped), `curate/` (Node engine + eval harness),
+  `resume/` (spec → .docx renderer), `track/` (loop design + schemas).
+- `.claude/skills/` — the skills that drive it inside Claude Code: `fitcheck` (front door),
+  `fitcheck-bank`, `-curate`, `-grade`, `-tailor`, `-track`, `-stories`, plus `pm-loop`
+  (designing PM feedback loops — trigger → action → self-eval → output).
+- **The relevance engine generalizes beyond jobs** — `score(item, target)` re-pointed at
+  "quantum-vulnerable" (score each crypto asset/system → migration swap-list) is the same
+  architecture aimed at the PKI/PQC centerpieces.
+
+> **Private data stays out of this public repo.** All personal career data — the achievement
+> bank, application log, résumés, master context, curation taste — lives in a **separate
+> private repo**, never committed here. This repo holds only the tool, skills, schemas, and
+> public (fictional) examples.
 
 ## Working agreements for code
 
