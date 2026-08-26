@@ -34,26 +34,22 @@ different thing held fixed. Build the matcher once; **Scout** aggregates it upwa
 > See [`NARRATIVE.md`](./NARRATIVE.md) for the full story, or the
 > [designed one-pager](https://claude.ai/code/artifact/e1648e03-4e95-4373-bc15-2d1baa5b95bf).
 
-## Two ingestion lanes
+## Getting a job description in
 
-| Lane | Covers | How |
-|---|---|---|
-| **API lane** | Greenhouse, Lever, Ashby, SmartRecruiters | Public no-auth job-board APIs. Enumerate *all* roles at a target company. Powers company-first discovery. |
-| **Capture lane** | LinkedIn, Indeed, Workday, Amazon (53 of 83 sites) | Reads the authenticated DOM from inside the browser — works where AI fetch is blocked. This is `capture/`. |
-
-Complementary: the API lane goes *deep on companies you're targeting*; the capture lane
-scores *whatever you're already looking at*.
+The input to Curate is a target JD. **Discovery is not fitcheck's job** — use
+[career-ops](https://github.com/santifer/career-ops) to find and score roles (see
+[`SCOUT.md`](./SCOUT.md)), or just paste the JD. For the narrow case of a role behind an auth
+wall an AI can't fetch (LinkedIn, Workday), the optional [`capture/`](./capture/) extension
+can grab the text from your open tab — an early experiment, not the recommended path.
 
 ## Components
 
 | Component | Role | Status |
 |---|---|---|
-| **`capture/`** | Capture lane — Chrome extension ("fitcheck Capture") that saves job tabs, captures JD text, exports for analysis | ✅ shipped (v0.6.0, 50 tests green) |
-| **`curate/`** | The Curate arm — target → swap list. Rubric-driven Claude call ([`curate/`](./curate/)) | 🟢 building (v0.1, 10 tests green) |
-| **`track/`** | Win/Loss capture — the `/track` skill + application & bank schemas that feed the outcome loop ([`track/`](./track/)) | 🟢 building (schema + skill in, ajv-validated) |
-| **`resume/`** | The renderer — a résumé spec → ATS-safe .docx; enforces no-em-dash; driven by `/tailor` ([`resume/`](./resume/)) | 🟢 building (renderer + guard in) |
-| `matcher/` | The shared relevance engine (Scout + Curate) | planned |
-| `api-lane/` | Company → ATS resolver + job-board API client | planned |
+| **`curate/`** | The core — reverse-match a JD → swap list, plus the eval harness (fabrication gate + Selection & Rendering rubrics) ([`curate/`](./curate/)) | 🟢 core, tested |
+| **`resume/`** | The renderer — a résumé spec → ATS-safe .docx; enforces no-em-dash; driven by `/tailor` ([`resume/`](./resume/)) | 🟢 in |
+| **`track/`** | The outcome-aware Win/Loss loop — `/track` skill + application & bank schemas ([`track/`](./track/)) | 🟢 in, ajv-validated |
+| `capture/` | Optional JD-grabber — Chrome extension that reads a JD from an authenticated tab. Early experiment, superseded by career-ops + paste; rough edges, not actively maintained ([`capture/`](./capture/)) | ⚪ early / optional |
 
 ## Where it fits
 

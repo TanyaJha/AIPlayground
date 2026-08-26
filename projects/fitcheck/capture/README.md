@@ -1,7 +1,17 @@
 # fitcheck Capture
 
-> The **capture lane** of [fitcheck](../) — one of two ingestion lanes (the other is
-> the ATS API lane). This is the component that works on sites an AI cannot fetch.
+> An **optional** way to pull a job description into [fitcheck](../) from a browser tab an
+> AI can't fetch. Early experiment — read the status note below.
+
+> **Status: early experiment, kept for reference; not actively maintained.** This was
+> fitcheck's *original* way to get a JD in, from before the pivot. fitcheck is now the
+> **evidence + evaluation** layer, and **discovery + JD capture are delegated to
+> [career-ops](https://github.com/santifer/career-ops)** (see [`../SCOUT.md`](../SCOUT.md)).
+> The recommended way to get a JD into fitcheck today is **career-ops or a paste**. This
+> extension only helps the narrow case of an authenticated tab an AI can't fetch; it works
+> but has rough edges. Its own "rank by fit / tailor my résumé" export flow (below) predates
+> and is **superseded by** the `/curate` + `/grade` + `/tailor` skills — treat the rest of
+> this README as a record of what it does, not a recommended path.
 
 A Chrome extension that turns your open job-posting tabs into a saved shortlist,
 then exports it as a file you can hand to Claude or ChatGPT along with your
