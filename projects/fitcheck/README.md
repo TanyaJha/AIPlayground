@@ -42,18 +42,36 @@ scores *whatever you're already looking at*.
 |---|---|---|
 | **`capture/`** | Capture lane — Chrome extension ("fitcheck Capture") that saves job tabs, captures JD text, exports for analysis | ✅ shipped (v0.6.0, 50 tests green) |
 | **`curate/`** | The Curate arm — target → swap list. Rubric-driven Claude call ([`curate/`](./curate/)) | 🟢 building (v0.1, 10 tests green) |
+| **`track/`** | Win/Loss capture — the `/track` skill + application & bank schemas that feed the outcome loop ([`track/`](./track/)) | 🟢 building (schema + skill in, ajv-validated) |
 | `matcher/` | The shared relevance engine (Scout + Curate) | planned |
 | `resume/` | Master-résumé builder + the swap-list writer | planned |
 | `api-lane/` | Company → ATS resolver + job-board API client | planned |
 
+## Where it fits
+
+fitcheck is the **evidence + evaluation** layer, not a job-search command center. For
+discovery — scanning company portals, scoring the market, tracking a wide funnel —
+[career-ops](https://github.com/santifer/career-ops) is excellent and open-source; use it.
+fitcheck owns the half it deliberately leaves open: the **reverse** direction (a target →
+the exact evidence that fits) and a real **eval layer** that grades every projection against
+your source-of-truth bank.
+
 ## The loop that makes it compound
 
-fitcheck isn't a one-shot tool — it improves as it's used (see the `pm-loop` skill):
+fitcheck's spine is an **outcome-aware evidence loop** — a Win/Loss loop designed with the
+`pm-loop` skill (see [`track/LOOP.md`](./track/LOOP.md)). Every application records *which
+framing* was used, so a result attributes back down to the **evidence** level: which
+achievement, framed which way, for which role archetype, actually landed.
 
 ```
-apply → outcome (response? interview?) → recalibrate what the engine surfaces
-competitor-watch + doc-freshness → keep the master résumé current with the market
+tailor (Curate) → apply → outcome (callback / silence / reject)
+        ↑                            │
+        └──── attribute to the framing that was used ─────┘
 ```
+
+Honest by design: at one job-seeker's data volume you **capture** the signal now and a human
+reads it — you do **not** auto-learn "which framing wins" from n=5. Calibrating the eval
+judge against real callbacks is v2, gated on having the data.
 
 ## Why I built this
 

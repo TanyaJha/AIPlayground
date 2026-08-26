@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/TanyaJha/AIPlayground/projects/fitcheck/track/schema/application.schema.json",
+  "title": "Application log entry",
+  "description": "One job application, tracked through its lifecycle. Records WHICH FRAMING was used (not just which job), so that when a result lands it can be attributed back to the evidence level. This is the substrate of the Win/Loss loop (see track/LOOP.md). Append-only history; human writes the hypothesis when a result lands.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "company", "role", "role_archetype", "status"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "description": "e.g. 'google-cloud-security-2026-08'." },
+    "company": { "type": "string" },
+    "role": { "type": "string" },
+    "role_archetype": {
+      "type": "string",
+      "description": "The archetype used to bucket comparable outcomes, e.g. 'ai-native', 'agentic-ai', 'cloud-security'. Free string, but reuse values so patterns can be seen across ≥2 comparable applications."
+    },
+    "resume_used": { "type": "string", "description": "Which resume variant / framing set, e.g. 'ai-native-v3', 'cloud-security-v1'." },
+    "achievements_surfaced": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Bank-entry ids that were promoted/added for this application. The link that makes attribution possible."
+    },
+    "framing_notes": { "type": "string", "description": "How the evidence was framed for this role (the deliberate choices)." },
+    "eval_scores_at_send": {
+      "type": "object",
+      "description": "Snapshot of the eval harness scores for the tailored output at send time (LLM-judge dims + overall). Lets you later ask: did a high judge score correlate with a real callback?",
+      "additionalProperties": { "type": "number" }
+    },
+    "channel": { "type": "string", "enum": ["referral", "portal", "recruiter", "networking", "other"], "description": "A major confounder — always record it, so framing is never credited/blamed for what the channel did." },
+    "status": {
+      "type": "string",
+      "enum": ["prepared", "sent", "callback", "interview", "offer", "reject", "silence", "withdrawn"],
+      "description": "Current lifecycle state."
+    },
+    "sent_at": { "type": ["string", "null"], "format": "date" },
+    "result": {
+      "type": "string",
+      "enum": ["pending", "callback", "interview", "offer", "reject", "silence"],
+      "default": "pending"
+    },
+    "result_at": { "type": ["string", "null"], "format": "date" },
+    "silence_after_weeks": { "type": ["integer", "null"], "description": "Weeks of no response before 'silence' is recorded (define it once so 'silence' is consistent)." },
+    "hypothesis": { "type": "string", "description": "The human's one-line read when a result lands. NOT a conclusion — a hypothesis to confirm only if it repeats across ≥2 comparable outcomes." },
+    "history": {
+      "type": "array",
+      "description": "Append-only lifecycle trail.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["at", "to_status"],
+        "properties": {
+          "at": { "type": "string", "format": "date" },
+          "from_status": { "type": "string" },
+          "to_status": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
+    }
+  }
+}

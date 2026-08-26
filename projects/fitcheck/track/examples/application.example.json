@@ -1,0 +1,21 @@
+{
+  "id": "acme-growth-pm-2026-08",
+  "company": "Acme",
+  "role": "Senior Product Manager, Growth",
+  "role_archetype": "growth-pm",
+  "resume_used": "growth-v2",
+  "achievements_surfaced": ["checkout-rewrite", "activation-funnel", "pricing-experiment"],
+  "framing_notes": "Led with conversion/revenue outcomes; kept platform depth to one line. (Fictional example.)",
+  "eval_scores_at_send": { "overall": 8.3, "impact_ownership": 4.6, "conciseness": 4.2, "recruiter_plausible": 4.5 },
+  "channel": "referral",
+  "status": "callback",
+  "sent_at": "2026-08-12",
+  "result": "callback",
+  "result_at": "2026-08-20",
+  "silence_after_weeks": null,
+  "hypothesis": "Growth-forward framing + a referral got a fast callback — but the referral is a big confounder; do NOT credit the framing until a non-referral growth-pm app repeats it.",
+  "history": [
+    { "at": "2026-08-12", "to_status": "sent", "note": "Applied via referral." },
+    { "at": "2026-08-20", "from_status": "sent", "to_status": "callback", "note": "Recruiter reached out." }
+  ]
+}

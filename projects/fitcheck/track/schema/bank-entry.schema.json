@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/TanyaJha/AIPlayground/projects/fitcheck/track/schema/bank-entry.schema.json",
+  "title": "Achievement bank entry",
+  "description": "One atomic, guardrailed unit of evidence in the master achievement bank. The bank is the single source of truth; every resume, bullet, and interview story is a lossy PROJECTION of a selection from it. Entries are outcome-aware: each accumulates a track record of which framings, for which role archetypes, led to callbacks.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "raw_evidence", "visibility"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$",
+      "description": "Stable slug, e.g. 'aimx-0-to-1'. Referenced by applications and framings."
+    },
+    "title": {
+      "type": "string",
+      "description": "Short human label for the achievement."
+    },
+    "raw_evidence": {
+      "type": "string",
+      "description": "The LOSSLESS narrative of what happened — including detail that never reaches a resume. This is the truth every projection is checked against."
+    },
+    "metrics": {
+      "type": "array",
+      "description": "Quantified outcomes. Kept separate from prose so a projection can cite them precisely and the eval gate can verify no number is invented.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["value"],
+        "properties": {
+          "value": { "type": "string", "description": "e.g. '200M users', '+20% migration acceleration'." },
+          "basis": { "type": "string", "description": "How it was measured / where it comes from." },
+          "confidence": { "type": "string", "enum": ["hard", "estimate", "directional"] }
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The role and ownership context, so a projection can never imply seniority or scope not held.",
+      "properties": {
+        "role": { "type": "string" },
+        "ownership": { "type": "string", "enum": ["owned", "led", "contributed", "supported"] },
+        "team_size": { "type": "string" },
+        "customers": { "type": "string" }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Skills / domains for retrieval, e.g. ['pki','pqc','eval','azure','federation']."
+    },
+    "guardrails": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "What must NOT be claimed from this entry. First-class data so the eval gate can enforce it, e.g. 'eight-figure, not the internal $ estimate', 'engineer in cloud, PM in identity', 'not fully automated'."
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["public", "private"],
+      "description": "private = contains customer names, internal figures, unreleased dates; never rendered to a public artifact."
+    },
+    "framings": {
+      "type": "array",
+      "description": "Approved reframes of this achievement per target role-archetype. The library the renderer chooses from; outcomes attach to these.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["framing_id", "archetype", "text"],
+        "properties": {
+          "framing_id": { "type": "string", "description": "Stable id within this entry, e.g. 'security-forward'." },
+          "archetype": { "type": "string", "description": "Role archetype this framing targets, e.g. 'cloud-security', 'ai-native'." },
+          "text": { "type": "string", "description": "The reframed bullet/line." },
+          "approved": { "type": "boolean", "default": false, "description": "Human-approved for use." }
+        }
+      }
+    },
+    "outcomes": {
+      "type": "array",
+      "description": "THE LOOP LIVES HERE. Attribution of real-world results down to the evidence + framing level: which framing of this achievement, for which archetype, was in play when a result landed. Sparse and noisy by design — treat as logged signal, never as proof, until a pattern repeats (see track/LOOP.md).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["application_id", "result"],
+        "properties": {
+          "application_id": { "type": "string", "description": "Ref to an entry in the applications log." },
+          "framing_id": { "type": "string", "description": "Which framing of this entry was surfaced." },
+          "archetype": { "type": "string" },
+          "result": { "type": "string", "enum": ["callback", "interview", "offer", "reject", "silence"] },
+          "logged_at": { "type": "string", "format": "date" }
+        }
+      }
+    }
+  }
+}

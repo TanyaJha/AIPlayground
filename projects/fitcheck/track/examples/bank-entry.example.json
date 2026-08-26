@@ -1,0 +1,33 @@
+{
+  "id": "checkout-rewrite",
+  "title": "Rebuilt checkout as a 0->1 service",
+  "raw_evidence": "Took the failing legacy checkout from concept to launch as a new service. Owned the vision and MVP scope in an ambiguous space where two teams disagreed on approach; built the business case, ran the rollout, and handled the incident when payments regressed in week one. (Fictional example for schema illustration.)",
+  "metrics": [
+    { "value": "+18% conversion", "basis": "A/B vs legacy over 6 weeks", "confidence": "hard" },
+    { "value": "~$4M incremental ARR", "basis": "finance model, first year", "confidence": "estimate" }
+  ],
+  "scope": { "role": "PM", "ownership": "owned", "team_size": "8 engineers", "customers": "SMB merchants" },
+  "tags": ["0-to-1", "payments", "experimentation", "incident-response"],
+  "guardrails": [
+    "Say 'incremental ARR', not the internal revenue figure.",
+    "Led product; did not write the payment integration."
+  ],
+  "visibility": "public",
+  "framings": [
+    {
+      "framing_id": "growth-forward",
+      "archetype": "growth-pm",
+      "text": "Rebuilt checkout 0->1 and lifted conversion +18% (A/B, 6 weeks), ~$4M first-year incremental ARR.",
+      "approved": true
+    },
+    {
+      "framing_id": "platform-forward",
+      "archetype": "platform-pm",
+      "text": "Took a failing checkout to a new service 0->1 — owned scope in an ambiguous two-team space and drove the rollout, including week-one incident response.",
+      "approved": true
+    }
+  ],
+  "outcomes": [
+    { "application_id": "acme-growth-pm-2026-08", "framing_id": "growth-forward", "archetype": "growth-pm", "result": "callback", "logged_at": "2026-08-20" }
+  ]
+}
