@@ -70,8 +70,10 @@ README. The root `README.md` is the portfolio index.
   truth) → **Curate** (reverse-match a JD → swap list) → **grade** (fabrication gate + a
   Selection rubric and a Rendering rubric) → **tailor** (render an ATS-safe .docx) →
   **track** (the outcome-aware Win/Loss loop) → **stories** (interview prep). Components:
-  `capture/` (Chrome MV3 extension, shipped), `curate/` (Node engine + eval harness),
-  `resume/` (spec → .docx renderer), `track/` (loop design + schemas).
+  `curate/` (Node engine + eval harness),
+  `resume/` (spec → .docx renderer), `track/` (loop design + schemas). `archive/capture/`
+  holds the early Chrome extension (JD capture), kept for reference; discovery + capture are
+  delegated to career-ops.
 - `.claude/skills/` — the skills that drive it inside Claude Code: `fitcheck` (front door),
   `fitcheck-bank`, `-curate`, `-grade`, `-tailor`, `-track`, `-stories`, plus `pm-loop`
   (designing PM feedback loops — trigger → action → self-eval → output).

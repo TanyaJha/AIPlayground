@@ -34,10 +34,10 @@ aiplayground/
 ├── CLAUDE.md            # mission, thesis, operating contract — read this first
 ├── projects/           # the products, one folder each, each with its own README
 │   └── fitcheck/        # the career product (evidence + evaluation layer)
-│       ├── capture/     # capture component (Chrome extension)
-│       ├── curate/      # reverse-match engine + eval harness
+│       ├── curate/      # the core: reverse-match engine + eval harness
 │       ├── resume/      # the renderer (spec → ATS-safe .docx)
-│       └── track/       # the outcome-aware evidence loop
+│       ├── track/       # the outcome-aware evidence loop
+│       └── archive/     # early capture extension, kept for reference
 ├── .claude/skills/     # reusable skills (pm-loop + fitcheck-* skills)
 └── pm-log/             # loop tracking (as it accrues)
 ```

@@ -53,15 +53,15 @@ target — "Senior AI PM, Microsoft"
 ⚠ GAP        wants distributed-systems depth you can't evidence — cover-letter it
 ```
 
-## Getting the jobs in: two ingestion lanes
+## Getting the jobs in: Scout leverages career-ops
 
-Complementary by design — one goes deep on the companies you're targeting, the other
-reads whatever you're already looking at.
-
-| Lane | Covers | How |
-|---|---|---|
-| **API lane** | Greenhouse, Lever, Ashby | Public, no-auth job-board APIs. Enumerate *every* open role at a target company, with full descriptions. Powers company-first discovery. |
-| **Capture lane** | LinkedIn, Indeed, Workday (53 of 83 sites) | No usable API. A browser extension reads the authenticated DOM from inside your session, so bot-blocking never applies. This is **fitcheck Capture**, and it's shipped. |
+Finding and scoring the roles — the Scout side's *discovery* — is already a well-built,
+open-source problem: [career-ops](https://github.com/santifer/career-ops) scans company
+portals and ranks the market. So fitcheck doesn't rebuild that. It **leverages the goodness
+of career-ops** to get jobs in, and spends its own depth on the part that's still novel: the
+**reverse** direction — a target → the exact evidence that fits — and grading every
+projection against the uncompressed record. (An early browser extension, `capture/`, can
+still grab a JD from an authenticated tab; it's archived and optional now.)
 
 ## Why it compounds
 
@@ -80,11 +80,10 @@ rewrite from scratch every hunt.
 
 | Component | Role | Status |
 |---|---|---|
-| `capture/` | Capture lane — the Chrome extension | ✅ shipped (50 tests green) |
-| `curate/` | The Curate arm — target → swap list | 🟢 building (v0.1) |
-| `api-lane/` | Company → ATS resolver + job-board API client | next |
-| `matcher/` | The shared relevance engine — both directions | next |
-| `resume/` | Master-résumé builder + the swap-list writer | next |
+| `curate/` | The core — target → swap list + the eval harness | 🟢 core, tested |
+| `resume/` | The renderer — swap list → ATS-safe résumé | 🟢 in |
+| `track/` | The outcome-aware Win/Loss loop | 🟢 in |
+| `archive/capture/` | The early browser capture extension | ⚪ archived |
 
 ## Why I built this
 

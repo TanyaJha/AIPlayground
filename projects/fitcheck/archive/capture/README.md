@@ -1,12 +1,12 @@
 # fitcheck Capture
 
-> An **optional** way to pull a job description into [fitcheck](../) from a browser tab an
+> An **optional** way to pull a job description into [fitcheck](../../) from a browser tab an
 > AI can't fetch. Early experiment — read the status note below.
 
 > **Status: early experiment, kept for reference; not actively maintained.** This was
 > fitcheck's *original* way to get a JD in, from before the pivot. fitcheck is now the
 > **evidence + evaluation** layer, and **discovery + JD capture are delegated to
-> [career-ops](https://github.com/santifer/career-ops)** (see [`../SCOUT.md`](../SCOUT.md)).
+> [career-ops](https://github.com/santifer/career-ops)** (see [`SCOUT.md`](../../SCOUT.md)).
 > The recommended way to get a JD into fitcheck today is **career-ops or a paste**. This
 > extension only helps the narrow case of an authenticated tab an AI can't fetch; it works
 > but has rough edges. Its own "rank by fit / tailor my résumé" export flow (below) predates

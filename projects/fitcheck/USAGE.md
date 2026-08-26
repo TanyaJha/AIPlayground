@@ -23,9 +23,10 @@ stories — in your own voice, with a fabrication gate on every claim.
    ```bash
    export ANTHROPIC_API_KEY=sk-ant-...
    ```
-4. *(Optional)* the **capture extension** — load `projects/fitcheck/capture/` unpacked in
-   Chrome (`chrome://extensions` → Developer mode → Load unpacked) to grab JD text from
-   sites where copy is awkward.
+4. *(Optional, archived)* the **capture extension** — load
+   `projects/fitcheck/archive/capture/` unpacked in Chrome (`chrome://extensions` →
+   Developer mode → Load unpacked) to grab JD text from an authenticated tab. An early
+   experiment; career-ops or a paste is the recommended path.
 
 ## Where your data lives (important)
 

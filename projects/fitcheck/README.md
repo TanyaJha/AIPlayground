@@ -39,8 +39,9 @@ different thing held fixed. Build the matcher once; **Scout** aggregates it upwa
 The input to Curate is a target JD. **Discovery is not fitcheck's job** — use
 [career-ops](https://github.com/santifer/career-ops) to find and score roles (see
 [`SCOUT.md`](./SCOUT.md)), or just paste the JD. For the narrow case of a role behind an auth
-wall an AI can't fetch (LinkedIn, Workday), the optional [`capture/`](./capture/) extension
-can grab the text from your open tab — an early experiment, not the recommended path.
+wall an AI can't fetch (LinkedIn, Workday), the optional [`archive/capture/`](./archive/capture/)
+extension can grab the text from your open tab — an early experiment (archived), not the
+recommended path.
 
 ## Components
 
@@ -49,7 +50,7 @@ can grab the text from your open tab — an early experiment, not the recommende
 | **`curate/`** | The core — reverse-match a JD → swap list, plus the eval harness (fabrication gate + Selection & Rendering rubrics) ([`curate/`](./curate/)) | 🟢 core, tested |
 | **`resume/`** | The renderer — a résumé spec → ATS-safe .docx; enforces no-em-dash; driven by `/tailor` ([`resume/`](./resume/)) | 🟢 in |
 | **`track/`** | The outcome-aware Win/Loss loop — `/track` skill + application & bank schemas ([`track/`](./track/)) | 🟢 in, ajv-validated |
-| `capture/` | Optional JD-grabber — Chrome extension that reads a JD from an authenticated tab. Early experiment, superseded by career-ops + paste; rough edges, not actively maintained ([`capture/`](./capture/)) | ⚪ early / optional |
+| `capture/` | Optional JD-grabber — Chrome extension that reads a JD from an authenticated tab. Early experiment, superseded by career-ops + paste; rough edges, not actively maintained ([`archive/capture/`](./archive/capture/)) | ⚪ early / optional |
 
 ## Where it fits
 
