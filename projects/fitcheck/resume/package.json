@@ -1,0 +1,15 @@
+{
+  "name": "fitcheck-resume",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "fitcheck résumé renderer — a résumé spec (JSON) to an ATS-safe .docx.",
+  "bin": { "fitcheck-render": "render.js" },
+  "scripts": {
+    "render": "node render.js",
+    "example": "node render.js examples/resume.example.json /tmp/fitcheck-resume-example.docx"
+  },
+  "dependencies": {
+    "docx": "^9.0.0"
+  }
+}

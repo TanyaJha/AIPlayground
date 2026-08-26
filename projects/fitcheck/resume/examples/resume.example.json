@@ -1,0 +1,34 @@
+{
+  "name": "JORDAN RIVERA",
+  "contact": "Seattle, WA · jordan@example.com · (555) 010-0000 · linkedin.com/in/example · github.com/example",
+  "summary": "**Product Manager who takes AI-native products 0->1 (business case to prototype to evaluation), with deep platform experience.** (Fictional example for the renderer.)",
+  "experience": [
+    {
+      "org": "Northwind · Senior Product Manager, Platform · Seattle, WA",
+      "dates": "2023 – present",
+      "subline": "Own the developer platform: APIs, SDKs, and a 0->1 AI assistant.",
+      "bullets": [
+        "**Created the platform AI assistant 0->1**: authored the vision and business case; now in engineering build.",
+        "**Built an evaluation harness for a non-deterministic assistant**: reproducible failure scenarios, a weighted rubric, and A/B runs that drove guardrail changes shipped by engineering."
+      ]
+    },
+    {
+      "org": "Contoso · Software Engineer · Remote",
+      "dates": "2019 – 2023",
+      "bullets": [
+        "Built and operated data pipelines across cloud networking, storage, and SQL; architecture-level fluency in the cloud stack."
+      ]
+    }
+  ],
+  "projects": [
+    "**sidequest**, an open-source tool built with an AI coding CLI: a rubric plus deterministic assertions plus a randomized pairwise judge."
+  ],
+  "skills": [
+    { "label": "AI & Product", "text": "foundation-model & agentic product development · evaluation for non-deterministic systems · 0->1 · roadmaps & PRDs" },
+    { "label": "Platform", "text": "APIs · SDKs · cloud architecture · developer experience" }
+  ],
+  "education": [
+    "**MBA** · University of Example, 2023",
+    "**B.S., Computer Engineering** · Example Institute of Technology, 2019"
+  ]
+}

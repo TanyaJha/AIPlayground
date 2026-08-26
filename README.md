@@ -24,6 +24,8 @@ Reusable playbooks that make the building repeatable (in [`.claude/skills/`](./.
 | [**fitcheck-curate**](./.claude/skills/fitcheck-curate/) | Reverse-match a target JD against your achievement bank → a swap list (add/promote/keep/demote + gaps). |
 | [**fitcheck-grade**](./.claude/skills/fitcheck-grade/) | Grade a Curate output against the Selection rubric — fabrication gate + 9 judge dimensions, run 3×. |
 | [**fitcheck-track**](./.claude/skills/fitcheck-track/) | Log applications for the outcome loop; attribute results back to the evidence + framing that was used. |
+| [**fitcheck-tailor**](./.claude/skills/fitcheck-tailor/) | Assemble a tailored résumé from a swap list + bank and render it to an ATS-safe .docx (no em dashes). |
+| [**fitcheck-bank**](./.claude/skills/fitcheck-bank/) · [**fitcheck-stories**](./.claude/skills/fitcheck-stories/) | Maintain the source-of-truth achievement bank; project STAR interview stories from it. |
 
 ## How this repo is organized
 
@@ -34,8 +36,9 @@ aiplayground/
 │   └── fitcheck/        # the career product (evidence + evaluation layer)
 │       ├── capture/     # capture component (Chrome extension)
 │       ├── curate/      # reverse-match engine + eval harness
+│       ├── resume/      # the renderer (spec → ATS-safe .docx)
 │       └── track/       # the outcome-aware evidence loop
-├── .claude/skills/     # reusable skills (pm-loop, fitcheck-curate/grade/track)
+├── .claude/skills/     # reusable skills (pm-loop + fitcheck-* skills)
 └── pm-log/             # loop tracking (as it accrues)
 ```
 
