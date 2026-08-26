@@ -23,6 +23,11 @@ different thing held fixed. Build the matcher once; **Scout** aggregates it upwa
 **Curate** runs it as a search. Curate's output is a concrete **swap list**: add / promote
 / demote / gap.
 
+> **Curate is fitcheck's core.** Scout's *discovery* (finding and scoring roles across the
+> market) is delegated to [career-ops](https://github.com/santifer/career-ops) — see
+> [`SCOUT.md`](./SCOUT.md). fitcheck keeps only Scout's evidence-side half: aggregating the
+> bank upward into a master résumé.
+
 > See [`NARRATIVE.md`](./NARRATIVE.md) for the full story, or the
 > [designed one-pager](https://claude.ai/code/artifact/e1648e03-4e95-4373-bc15-2d1baa5b95bf).
 
@@ -54,7 +59,7 @@ discovery — scanning company portals, scoring the market, tracking a wide funn
 [career-ops](https://github.com/santifer/career-ops) is excellent and open-source; use it.
 fitcheck owns the half it deliberately leaves open: the **reverse** direction (a target →
 the exact evidence that fits) and a real **eval layer** that grades every projection against
-your source-of-truth bank.
+your source-of-truth bank. The exact boundary and handoff is in [`SCOUT.md`](./SCOUT.md).
 
 ## The loop that makes it compound
 
