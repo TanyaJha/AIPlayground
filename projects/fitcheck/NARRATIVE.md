@@ -3,6 +3,7 @@
 > The two-way fit between **what you've done** and **the roles you want.**
 
 📄 **Designed one-pager:** https://claude.ai/code/artifact/e1648e03-4e95-4373-bc15-2d1baa5b95bf
+🗺️ **System map** (the whole pipeline in one picture): [`system-map.html`](./system-map.html) · [rendered](https://claude.ai/code/artifact/f4ac6297-1b0e-4609-b8ac-b73f8cab0b0f)
 
 Most tools match you to a job from your résumé — a lossy compression of your career.
 fitcheck works from the fuller record of everything you've done, and it runs in **both

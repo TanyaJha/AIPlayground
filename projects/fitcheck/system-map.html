@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>fitcheck system map</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ground: #F4F6F8;
+    --surface: #FFFFFF;
+    --surface-2: #EEF1F4;
+    --ink: #14181B;
+    --muted: #59616B;
+    --faint: #828C97;
+    --line: #E0E4E8;
+    --line-strong: #CBD2D8;
+    --warm: #B26E22;
+    --warm-soft: #F4E7D5;
+    --cool: #10707F;
+    --cool-soft: #D7EAEC;
+    --ok: #2E8657;
+    --ok-soft: #DCEEE2;
+    --fail: #C0483B;
+    --fail-soft: #F3DEDA;
+    --shadow: 0 1px 2px rgba(20,24,27,.04), 0 8px 30px rgba(20,24,27,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0D1013;
+      --surface: #15191D;
+      --surface-2: #1B2025;
+      --ink: #ECEFF2;
+      --muted: #9BA4AE;
+      --faint: #6B747E;
+      --line: #252B31;
+      --line-strong: #333B42;
+      --warm: #D89B4E;
+      --warm-soft: #2A2016;
+      --cool: #3BA9B9;
+      --cool-soft: #12252A;
+      --ok: #49B27C;
+      --ok-soft: #12241A;
+      --fail: #E0685A;
+      --fail-soft: #2A1613;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0D1013;
+    --surface: #15191D;
+    --surface-2: #1B2025;
+    --ink: #ECEFF2;
+    --muted: #9BA4AE;
+    --faint: #6B747E;
+    --line: #252B31;
+    --line-strong: #333B42;
+    --warm: #D89B4E;
+    --warm-soft: #2A2016;
+    --cool: #3BA9B9;
+    --cool-soft: #12252A;
+    --ok: #49B27C;
+    --ok-soft: #12241A;
+    --fail: #E0685A;
+    --fail-soft: #2A1613;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 34px rgba(0,0,0,.4);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 22px; }
+
+  h1, h2, h3 { font-family: "Archivo", ui-sans-serif, sans-serif; text-wrap: balance; letter-spacing: -.015em; margin: 0; }
+  h2 { font-size: clamp(1.4rem, 1.15rem + 1.1vw, 1.8rem); font-weight: 700; line-height: 1.14; }
+  h3 { font-size: 1.02rem; font-weight: 600; letter-spacing: 0; }
+  p { margin: 0; }
+  .lead { color: var(--muted); }
+  a { color: var(--cool); text-underline-offset: 3px; }
+
+  .eyebrow { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .7rem; font-weight: 600;
+             letter-spacing: .16em; text-transform: uppercase; color: var(--faint); }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  section { padding: 40px 0; border-top: 1px solid var(--line); }
+  section > .stack > * + * { margin-top: 14px; }
+  .stack { display: flex; flex-direction: column; }
+
+  /* ---------- header ---------- */
+  header { padding: 74px 0 6px; }
+  .brand { display: flex; align-items: baseline; gap: .4ch; font-family: "Archivo", sans-serif; font-weight: 800;
+           font-size: clamp(2.2rem, 1.7rem + 2.6vw, 3.2rem); letter-spacing: -.03em; line-height: 1; }
+  .brand .fit { color: var(--ink); }
+  .brand .check { color: var(--cool); }
+  .brand .swap { color: var(--warm); font-size: .72em; margin-left: .1ch; }
+  .brand .kicker { font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: .32em;
+                   letter-spacing: .12em; text-transform: uppercase; color: var(--faint); align-self: center; margin-left: .6ch; }
+  .tagline { margin-top: 16px; font-size: clamp(1.15rem, 1rem + .7vw, 1.5rem); font-family: "Archivo", sans-serif;
+             font-weight: 600; letter-spacing: -.01em; text-wrap: balance; }
+  .tagline .a { color: var(--warm); } .tagline .b { color: var(--cool); }
+  .sub { margin-top: 12px; color: var(--muted); max-width: 62ch; }
+
+  /* ---------- primitive callout ---------- */
+  .primitive { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px;
+               background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+               padding: 18px 20px; box-shadow: var(--shadow); }
+  .primitive .fn { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 1.02rem; color: var(--ink);
+                   background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; white-space: nowrap; }
+  .primitive .fn .ev { color: var(--warm); } .primitive .fn .tg { color: var(--cool); }
+  .primitive .say { color: var(--muted); font-size: .95rem; flex: 1 1 260px; }
+  .primitive .say b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- the map ---------- */
+  .map { display: flex; flex-direction: column; align-items: stretch; }
+
+  .node { position: relative; background: var(--surface); border: 1px solid var(--line-strong);
+          border-radius: 14px; padding: 16px 18px; box-shadow: var(--shadow); }
+  .node .top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .node .name { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 1.05rem; letter-spacing: -.01em; }
+  .node .kind { font-family: "IBM Plex Mono", monospace; font-size: .66rem; font-weight: 600; letter-spacing: .12em;
+                text-transform: uppercase; color: var(--faint); }
+  .node .role { margin-top: 6px; color: var(--ink); font-size: .98rem; }
+  .node .role b { font-weight: 600; }
+  .node .io { margin-top: 10px; font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted);
+              background: var(--surface-2); border-radius: 8px; padding: 8px 10px; overflow-x: auto; white-space: nowrap; }
+  .node .io .in { color: var(--muted); } .node .io .out { color: var(--ink); font-weight: 600; }
+  .node .path { margin-top: 8px; font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--faint); }
+
+  .node.warm { border-color: var(--warm); }
+  .node.warm::before, .node.cool::before, .node.core::before { content: ""; position: absolute; left: 0; top: 14px; bottom: 14px;
+          width: 3px; border-radius: 3px; }
+  .node.warm::before { background: var(--warm); }
+  .node.cool { border-color: var(--cool); }
+  .node.cool::before { background: var(--cool); }
+  .node.core { border-color: var(--line-strong); box-shadow: 0 0 0 1px var(--line-strong), var(--shadow); }
+  .node.core::before { background: linear-gradient(var(--warm), var(--cool)); }
+  .node.ext { border-style: dashed; border-color: var(--line-strong); background: var(--surface-2); box-shadow: none; }
+  .node.ext .name { color: var(--muted); }
+
+  /* connector */
+  .conn { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 9px 0; }
+  .conn .line { width: 2px; height: 16px; background: var(--line-strong); }
+  .conn .lbl { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--faint); text-align: center; }
+  .conn .arrow { color: var(--line-strong); font-size: .82rem; line-height: 1; margin-top: -3px; }
+
+  /* two inputs converging */
+  .inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .merge { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 0 2px; }
+  .merge .brackets { display: flex; justify-content: center; gap: 0; width: 60%; height: 14px;
+                     border: 2px solid var(--line-strong); border-top: none; border-radius: 0 0 10px 10px; }
+  .merge .stem { width: 2px; height: 12px; background: var(--line-strong); }
+  .merge .lbl { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--faint); }
+
+  /* gate */
+  .gate { position: relative; border: 1px solid var(--ok); background: var(--ok-soft); border-radius: 12px; padding: 14px 16px; }
+  .gate .ghead { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+  .gate .glyph { font-size: 1rem; color: var(--ok); }
+  .gate .gname { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: .92rem; color: var(--ink); }
+  .gate .gtag { font-family: "IBM Plex Mono", monospace; font-size: .66rem; font-weight: 600; letter-spacing: .1em;
+                text-transform: uppercase; color: var(--ok); border: 1px solid var(--ok); border-radius: 20px; padding: 2px 9px; }
+  .gate .gbody { margin-top: 8px; font-size: .9rem; color: var(--muted); }
+  .gate .gbody b { color: var(--ink); font-weight: 600; }
+  .gate .fail { margin-top: 8px; font-family: "IBM Plex Mono", monospace; font-size: .76rem; color: var(--fail);
+                background: var(--fail-soft); border-radius: 7px; padding: 6px 9px; display: inline-block; }
+
+  /* branch (stories) */
+  .branch { margin-top: 10px; display: flex; align-items: stretch; gap: 12px; }
+  .branch .elbow { flex: 0 0 26px; position: relative; }
+  .branch .elbow::before { content: ""; position: absolute; left: 12px; top: -10px; bottom: 50%;
+                           border-left: 2px solid var(--line-strong); border-bottom: 2px solid var(--line-strong);
+                           border-bottom-left-radius: 10px; width: 14px; }
+  .branch .node { flex: 1 1 auto; }
+
+  /* feedback rail */
+  .feedback { margin-top: 14px; position: relative; border: 1px dashed var(--warm); border-radius: 12px;
+              background: linear-gradient(var(--warm-soft), transparent); padding: 14px 16px; }
+  .feedback .fhead { display: flex; align-items: center; gap: 9px; }
+  .feedback .fglyph { color: var(--warm); font-size: 1rem; }
+  .feedback .fname { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: .9rem; }
+  .feedback .fbody { margin-top: 7px; font-size: .9rem; color: var(--muted); }
+  .feedback .fbody b { color: var(--ink); font-weight: 600; }
+  .feedback .track-mono { font-family: "IBM Plex Mono", monospace; font-size: .8rem; margin-top: 9px; color: var(--muted); }
+
+  /* ---------- explainer bands ---------- */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px; box-shadow: var(--shadow); }
+  .panel .ptag { font-family: "IBM Plex Mono", monospace; font-size: .68rem; font-weight: 600; letter-spacing: .1em;
+                 text-transform: uppercase; }
+  .panel.sel .ptag { color: var(--cool); } .panel.rend .ptag { color: var(--warm); }
+  .panel h3 { margin-top: 6px; }
+  .panel .q { margin-top: 8px; font-size: .92rem; color: var(--muted); font-style: italic; }
+  .panel .dims { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .panel .dim { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--ink); background: var(--surface-2);
+                border: 1px solid var(--line); border-radius: 20px; padding: 3px 9px; }
+  .panel .gaterow { margin-top: 12px; display: flex; align-items: center; gap: 8px; font-size: .82rem; }
+  .panel .gaterow .lock { color: var(--fail); font-size: .9rem; }
+  .panel .gaterow .gt { font-family: "IBM Plex Mono", monospace; color: var(--fail); font-weight: 600; }
+  .panel .gaterow .gd { color: var(--muted); }
+
+  /* data separation */
+  .repos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .repo { border-radius: 14px; padding: 18px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); }
+  .repo.pub { border-top: 3px solid var(--cool); }
+  .repo.priv { border-top: 3px solid var(--warm); }
+  .repo .rname { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: .92rem; display: flex; align-items: center; gap: 8px; }
+  .repo.pub .rname .dotr { color: var(--cool); } .repo.priv .rname .dotr { color: var(--warm); }
+  .repo .rwhat { margin-top: 4px; font-size: .82rem; color: var(--faint); }
+  .repo ul { margin: 12px 0 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .repo li { font-size: .9rem; color: var(--ink); padding-left: 18px; position: relative; }
+  .repo li::before { content: "›"; position: absolute; left: 4px; color: var(--faint); }
+  .repo li .m { font-family: "IBM Plex Mono", monospace; font-size: .82rem; color: var(--muted); }
+
+  /* legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+  .legend .li { display: flex; align-items: center; gap: 8px; font-size: .84rem; color: var(--muted); }
+  .legend .sw { width: 24px; height: 16px; border-radius: 5px; flex: 0 0 auto; }
+  .legend .sw.warm { border: 1.5px solid var(--warm); border-left-width: 4px; background: var(--surface); }
+  .legend .sw.cool { border: 1.5px solid var(--cool); border-left-width: 4px; background: var(--surface); }
+  .legend .sw.core { border: 1.5px solid var(--line-strong); background: linear-gradient(90deg, var(--warm-soft), var(--cool-soft)); }
+  .legend .sw.gate { border: 1.5px solid var(--ok); background: var(--ok-soft); }
+  .legend .sw.ext { border: 1.5px dashed var(--line-strong); background: var(--surface-2); }
+  .legend .sw.data { border: 1.5px solid var(--warm); border-left-width: 4px; background: var(--warm-soft); }
+
+  footer { padding: 34px 0 60px; color: var(--faint); font-family: "IBM Plex Mono", monospace; font-size: .78rem;
+           border-top: 1px solid var(--line); margin-top: 8px; }
+
+  .reveal { opacity: 0; transform: translateY(10px); animation: rise .6s cubic-bezier(.2,.7,.3,1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  @media (max-width: 620px) {
+    .inputs, .two, .repos { grid-template-columns: 1fr; }
+    .primitive { flex-direction: column; align-items: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand reveal">
+      <span class="fit">fit</span><span class="check">check</span><span class="swap">⇄</span>
+      <span class="kicker">system map</span>
+    </div>
+    <div class="tagline reveal">One engine, run two directions: <span class="a">the evidence you've built</span> ↔ <span class="b">the roles you want</span>.</div>
+    <p class="sub reveal">The whole solution on one page. Discovery is delegated to career-ops; fitcheck is the evidence + evaluation layer that turns a job description into the exact, graded, honestly-rendered projection of your record. Read it top to bottom, the way a run flows.</p>
+
+    <div class="primitive reveal">
+      <span class="fn">score(<span class="ev">experience</span>, <span class="tg">target</span>)</span>
+      <span class="say">The atomic operation underneath everything. Hold <b>experience</b> fixed and search targets, that's Scout (discovery). Hold a <b>target</b> fixed and search your record, that's Curate. fitcheck builds the second direction and grades it.</span>
+    </div>
+  </header>
+
+  <!-- ============ THE MAP ============ -->
+  <section>
+    <div class="stack">
+      <span class="eyebrow">The pipeline</span>
+      <h2>From an open role to a graded, tailored projection</h2>
+    </div>
+
+    <div class="map" style="margin-top:22px">
+
+      <!-- career-ops -->
+      <div class="node ext reveal">
+        <div class="top"><span class="name">career-ops</span><span class="kind">external · discovery</span></div>
+        <div class="role">Scans company portals, scores the market, tracks the funnel. Open-source, not rebuilt here. It surfaces the role.</div>
+        <div class="io"><span class="in">market signals</span> &nbsp;→&nbsp; <span class="out">an open role + its job description</span></div>
+      </div>
+
+      <div class="conn"><span class="line"></span><span class="lbl">the JD is the handoff</span><span class="arrow">▼</span></div>
+
+      <!-- inputs converge: JD × bank -->
+      <div class="inputs">
+        <div class="node cool reveal">
+          <div class="top"><span class="name">JD (target)</span><span class="kind">input</span></div>
+          <div class="role">The role you're aiming at, at any granularity: one posting, a domain, a company.</div>
+        </div>
+        <div class="node warm reveal">
+          <div class="top"><span class="name">bank</span><span class="kind">data · source of truth</span></div>
+          <div class="role">Your <b>uncompressed</b> record. Atomic achievements in your own voice, each carrying alternate framings per role-archetype and the outcomes it has earned.</div>
+          <div class="path">private repo · /fitcheck-bank maintains it</div>
+        </div>
+      </div>
+
+      <div class="merge"><span class="stem"></span><span class="brackets"></span><span class="stem"></span><span class="lbl">target × evidence</span><span class="arrow" style="color:var(--line-strong)">▼</span></div>
+
+      <!-- curate -->
+      <div class="node core reveal">
+        <div class="top"><span class="name">curate</span><span class="kind">the core · reverse-match</span></div>
+        <div class="role">Diff the target against the bank and the moves write themselves. This is the novel direction: a target → the exact evidence that fits.</div>
+        <div class="io"><span class="in">JD × bank</span> &nbsp;→&nbsp; <span class="out">swap list: add · promote · keep · demote · gaps</span></div>
+        <div class="path">projects/fitcheck/curate · /fitcheck-curate · 19 tests</div>
+      </div>
+
+      <div class="conn"><span class="line"></span><span class="lbl">grade before you trust it</span><span class="arrow">▼</span></div>
+
+      <!-- selection gate -->
+      <div class="gate reveal">
+        <div class="ghead"><span class="glyph">⛬</span><span class="gname">Selection gate</span><span class="gtag">rubric.js · run 3×</span></div>
+        <div class="gbody">Did we pick the <b>right</b> evidence? An adversarial LLM-as-judge scores the swap list on <b>9 dimensions</b>, averaged over three runs to blunt position and verbosity bias.</div>
+        <div class="fail">✦ no_fabrication gate — any invented claim fails the whole selection, hard.</div>
+      </div>
+
+      <div class="conn"><span class="line"></span><span class="lbl">passes →</span><span class="arrow">▼</span></div>
+
+      <!-- tailor -->
+      <div class="node core reveal">
+        <div class="top"><span class="name">tailor</span><span class="kind">assemble + render</span></div>
+        <div class="role">Assemble the surviving evidence into a résumé spec and render it. Also pulls full prose from the <span class="mono">bank</span>, not just the swap-list labels.</div>
+        <div class="io"><span class="in">swap list + bank</span> &nbsp;→&nbsp; <span class="out">ATS-safe .docx (no em dashes)</span></div>
+        <div class="path">projects/fitcheck/resume · /fitcheck-tailor</div>
+      </div>
+
+      <div class="conn"><span class="line"></span><span class="lbl">grade the prose, not just the picks</span><span class="arrow">▼</span></div>
+
+      <!-- rendering gate -->
+      <div class="gate reveal">
+        <div class="ghead"><span class="glyph">⛬</span><span class="gname">Rendering gate</span><span class="gtag">rendering-rubric.js</span></div>
+        <div class="gbody">Does it <b>read like a human wrote it</b> and stay true to the record? Scores the rendered bullets on <b>8 dimensions</b> — complete sentences, concrete substance, one idea each, domain-fluent.</div>
+        <div class="fail">✦ faithful_and_guardrailed gate — leaks an internal figure or a rejected framing, and it fails.</div>
+      </div>
+
+      <div class="conn"><span class="line"></span><span class="lbl">passes →</span><span class="arrow">▼</span></div>
+
+      <!-- track -->
+      <div class="node cool reveal">
+        <div class="top"><span class="name">track</span><span class="kind">outcome loop</span></div>
+        <div class="role">Log the application with the <b>exact framing</b> that was sent. When a result lands, attribute it back to the evidence that earned it.</div>
+        <div class="io"><span class="in">application + framing</span> &nbsp;→&nbsp; <span class="out">outcome: callback? interview? offer?</span></div>
+        <div class="path">projects/fitcheck/track · /fitcheck-track</div>
+      </div>
+
+      <!-- feedback rail -->
+      <div class="feedback reveal">
+        <div class="fhead"><span class="fglyph">↺</span><span class="fname">the loop closes</span></div>
+        <div class="fbody">Outcomes feed back so the résumé becomes a <b>living document that tracks its market</b>, not a file you rewrite every hunt.</div>
+        <div class="track-mono">tailor (Curate) → apply → outcome &nbsp;<span style="color:var(--warm)">↳ recalibrate what curate surfaces · flag what the bank is missing</span></div>
+      </div>
+
+      <!-- stories branch -->
+      <div class="branch reveal">
+        <div class="elbow"></div>
+        <div class="node warm">
+          <div class="top"><span class="name">stories</span><span class="kind">branch off the bank</span></div>
+          <div class="role">The same evidence, projected a different way: STAR interview stories drawn straight from the bank, so prep and résumé never drift apart.</div>
+          <div class="path">/fitcheck-stories</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ THE TWO GATES ============ -->
+  <section>
+    <div class="stack">
+      <span class="eyebrow">Why two gates</span>
+      <h2>Selection and rendering fail in different ways, so each has its own judge</h2>
+      <p class="lead">Picking the right experience and writing it well are separate skills. An early version graded only the picks and shipped bullets that read like label-colon fragments. Splitting the evals fixed that.</p>
+    </div>
+
+    <div class="two" style="margin-top:20px">
+      <div class="panel sel">
+        <span class="ptag">gate 1 · after curate</span>
+        <h3>Selection rubric</h3>
+        <p class="q">"Did we surface the strongest true evidence for this target?"</p>
+        <div class="dims">
+          <span class="dim">relevance</span><span class="dim">seniority_fit</span><span class="dim">specificity</span>
+          <span class="dim">technical_accuracy</span><span class="dim">evidence_spread</span><span class="dim">proactive_framing</span>
+          <span class="dim">coverage</span><span class="dim">ordering</span><span class="dim">gap_honesty</span>
+        </div>
+        <div class="gaterow"><span class="lock">⛔</span><span class="gt">no_fabrication</span><span class="gd">— hard gate, overrides every score</span></div>
+      </div>
+
+      <div class="panel rend">
+        <span class="ptag">gate 2 · after tailor</span>
+        <h3>Rendering rubric</h3>
+        <p class="q">"Does the prose read human, and does it stay true to the record?"</p>
+        <div class="dims">
+          <span class="dim">complete_sentence</span><span class="dim">concrete_substance</span><span class="dim">full_bodied</span>
+          <span class="dim">impact_forward</span><span class="dim">reads_human</span><span class="dim">no_padding</span>
+          <span class="dim">one_idea</span><span class="dim">domain_fluent</span>
+        </div>
+        <div class="gaterow"><span class="lock">⛔</span><span class="gt">faithful_and_guardrailed</span><span class="gd">— no leaks, no rejected framings</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DATA SEPARATION ============ -->
+  <section>
+    <div class="stack">
+      <span class="eyebrow">Where things live</span>
+      <h2>The tool is public; your record never is</h2>
+      <p class="lead">Everything is built in the open, but the private career data stays in a separate repo and is never committed to the public one. The public repo holds only the machinery and fictional examples.</p>
+    </div>
+
+    <div class="repos" style="margin-top:20px">
+      <div class="repo pub">
+        <div class="rname"><span class="dotr">◆</span> AIPlayground <span class="rwhat" style="margin-left:auto">public</span></div>
+        <div class="rwhat">the machinery, built in public</div>
+        <ul>
+          <li>engines &nbsp;<span class="m">curate/ · resume/ · track/</span></li>
+          <li>the six <span class="m">/fitcheck-*</span> skills + front door</li>
+          <li>both rubrics &nbsp;<span class="m">+ schemas</span></li>
+          <li>fictional worked examples</li>
+        </ul>
+      </div>
+      <div class="repo priv">
+        <div class="rname"><span class="dotr">◆</span> private repo <span class="rwhat" style="margin-left:auto">private</span></div>
+        <div class="rwhat">your actual career data</div>
+        <ul>
+          <li>the <span class="m">bank</span> — your real achievements</li>
+          <li>the <span class="m">application log</span> + outcomes</li>
+          <li>master context + curation taste</li>
+          <li>rendered résumés &nbsp;<span class="m">.docx</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LEGEND ============ -->
+  <section>
+    <div class="stack">
+      <span class="eyebrow">Reading the map</span>
+      <div class="legend" style="margin-top:6px">
+        <span class="li"><span class="sw core"></span> the core engine (curate · tailor)</span>
+        <span class="li"><span class="sw cool"></span> target side — the role you want</span>
+        <span class="li"><span class="sw warm"></span> evidence side — what you've done</span>
+        <span class="li"><span class="sw data"></span> data store (the bank)</span>
+        <span class="li"><span class="sw gate"></span> eval gate — must pass to continue</span>
+        <span class="li"><span class="sw ext"></span> external — delegated to career-ops</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    fitcheck · a project in AIPlayground · one engine, two directions, graded at every step
+  </footer>
+
+</div>
+</body>
+</html>
