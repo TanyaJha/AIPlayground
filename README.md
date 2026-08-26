@@ -11,7 +11,7 @@ I work.
 
 | Project | What it is | Status |
 |---|---|---|
-| [**fitcheck**](./projects/fitcheck/) | AI copilot for the two-way fit between what you've done and the roles you want. Personal job-hunt workbench. | 🟢 building — capture component shipped |
+| [**fitcheck**](./projects/fitcheck/) | The evidence + evaluation layer for a job search (complement to [career-ops](https://github.com/santifer/career-ops), which owns discovery): a reverse-match **Curate** engine, an **eval** harness, and an outcome loop. Personal job-hunt workbench. | 🟢 building — capture shipped; curate + loop in |
 | **PKI / PQC × AI** | The centerpieces: AI tooling for post-quantum migration, PKI posture, and certificate infrastructure. | 🟡 next — ideas incoming |
 
 ## Skills
@@ -21,6 +21,9 @@ Reusable playbooks that make the building repeatable (in [`.claude/skills/`](./.
 | Skill | What it does |
 |---|---|
 | [**pm-loop**](./.claude/skills/pm-loop/) | Design PM feedback loops for AI products — trigger → action → self-eval → output, connected to evals. |
+| [**fitcheck-curate**](./.claude/skills/fitcheck-curate/) | Reverse-match a target JD against your achievement bank → a swap list (add/promote/keep/demote + gaps). |
+| [**fitcheck-grade**](./.claude/skills/fitcheck-grade/) | Grade a Curate output against the Selection rubric — fabrication gate + 9 judge dimensions, run 3×. |
+| [**fitcheck-track**](./.claude/skills/fitcheck-track/) | Log applications for the outcome loop; attribute results back to the evidence + framing that was used. |
 
 ## How this repo is organized
 
@@ -28,9 +31,11 @@ Reusable playbooks that make the building repeatable (in [`.claude/skills/`](./.
 aiplayground/
 ├── CLAUDE.md            # mission, thesis, operating contract — read this first
 ├── projects/           # the products, one folder each, each with its own README
-│   └── fitcheck/        # the career product
-│       └── capture/     # its capture component (Chrome extension)
-├── .claude/skills/     # reusable skills (pm-loop)
+│   └── fitcheck/        # the career product (evidence + evaluation layer)
+│       ├── capture/     # capture component (Chrome extension)
+│       ├── curate/      # reverse-match engine + eval harness
+│       └── track/       # the outcome-aware evidence loop
+├── .claude/skills/     # reusable skills (pm-loop, fitcheck-curate/grade/track)
 └── pm-log/             # loop tracking (as it accrues)
 ```
 

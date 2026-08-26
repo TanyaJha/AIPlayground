@@ -13,7 +13,11 @@ your achievement bank  +  a target job  ( + optional current résumé )
 
 The engine is a **prompt, not an algorithm** — `score(experience, target)` is a single
 structured Claude call ([`src/prompt.js`](src/prompt.js)). That's deliberate: it's the
-PM-native way to build a matcher, and it's what the evals loop will iterate on next.
+PM-native way to build a matcher, and it's what the [eval harness](evals/) iterates on.
+
+> Also invokable as Claude Code skills: **`/curate`** (this) and **`/grade`** (the eval
+> harness). Their outputs feed fitcheck's outcome loop via **`/track`** — see
+> [`../track/`](../track/) and [`../SCOUT.md`](../SCOUT.md) for where career-ops fits.
 
 ## Run it
 
