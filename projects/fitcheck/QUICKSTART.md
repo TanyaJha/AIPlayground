@@ -68,13 +68,20 @@ then:
 /fitcheck
 ```
 
-Tell it you're new and want to build your bank. Or go straight to `/bank`. Then **paste your raw
-material** — an old résumé, a review, a brain-dump. Claude will:
+Tell it you're new and want to build your bank. The fastest way is to **point it at material you
+already have** rather than typing from memory:
 
-- break it into **atomic entries** (one achievement each),
-- attach **guardrails** (what must *not* be claimed — "eight-figure, not the internal figure"),
-- keep the **lossless** detail that never fits a résumé,
-- and write it all to `bank.json`.
+> "Run `/extract` on my performance reviews and this folder of project docs."
+
+Give it your **year-end and mid-year reviews, a brag doc or promo packet, an old résumé, or a
+folder of work**. `/extract` reads each source and pulls out your achievements in bulk. (For a
+single accomplishment or a quick brain-dump, `/bank` handles one at a time.) Either way, Claude:
+
+- breaks the material into **atomic entries** (one achievement each),
+- captures **metrics, scope, and impact** — never inventing a number,
+- attaches **guardrails** (what must *not* be claimed — "eight-figure, not the internal figure"),
+- keeps the **lossless** detail that never fits a résumé,
+- shows you the batch to approve, then writes it all to `bank.json`.
 
 **Tell it where your data lives**, e.g.:
 

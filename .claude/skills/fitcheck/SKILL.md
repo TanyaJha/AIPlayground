@@ -22,7 +22,8 @@ Ask (or infer) what they want, and route:
 
 | They want to… | Route to |
 |---|---|
-| Set up / build their achievement bank | **`/bank`** (fitcheck-bank) |
+| Build the bank in bulk from reviews / a work folder / a brag doc | **`/extract`** (fitcheck-extract) |
+| Add or maintain a single achievement, framing, or audit | **`/bank`** (fitcheck-bank) |
 | Tailor a résumé to a specific role | **`/curate`** then **`/tailor`** |
 | Know if a résumé/selection is good | **`/grade`** (fitcheck-grade) |
 | Render a résumé to .docx | **`/tailor`** (fitcheck-tailor) |
@@ -37,8 +38,10 @@ Ask (or infer) what they want, and route:
 2. Establish **where their private data lives** — a private repo or local folder, **never**
    this public repo. `bank.json` and `applications.json` follow the schemas in
    `projects/fitcheck/track/schema/`.
-3. Start with **`/bank`**: turn a résumé, a review, or a brain-dump into atomic, guardrailed
-   bank entries. Nothing else works well until the bank exists.
+3. Build the bank. If they have material to point at (performance reviews, a brag doc, a work
+   folder, an old résumé), start with **`/extract`** — it ingests those in bulk. For a single
+   accomplishment or a quick brain-dump, use **`/bank`**. Nothing else works well until the
+   bank exists.
 4. Then run one real cycle: pick a JD → `/curate` → `/grade` → `/tailor`. The first live run
    is what proves it end to end.
 
