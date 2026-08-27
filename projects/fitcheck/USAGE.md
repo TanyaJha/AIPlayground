@@ -5,6 +5,9 @@ Code, which orchestrate two small Node engines over **your own private achieveme
 It is not a website or a hosted app — it runs on your machine, and your career data never
 leaves it.
 
+> **New here? Start with [QUICKSTART.md](./QUICKSTART.md)** — a linear, copy-pasteable
+> zero-to-first-résumé walkthrough. This page is the full reference behind it.
+
 **What it's for:** keep a living master achievement bank, reverse-tailor a résumé to a
 specific role, grade it before you send, track applications and outcomes, and prep interview
 stories — in your own voice, with a fabrication gate on every claim.

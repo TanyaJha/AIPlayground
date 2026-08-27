@@ -6,8 +6,10 @@ Most tools match you to a job from your résumé — a lossy compression of your
 fitcheck works from the fuller record of everything you've done, and it runs in **both
 directions.**
 
-> **Start here → [USAGE.md](./USAGE.md)** — the end-to-end how-to (prerequisites, the
-> workflow, where your data lives). Inside Claude Code, the front-door skill is **`/fitcheck`**.
+> **New here → [QUICKSTART.md](./QUICKSTART.md)** — a linear, copy-pasteable zero-to-first-résumé
+> walkthrough (terminal + Claude, ~20 min). Then [USAGE.md](./USAGE.md) is the full reference
+> (every skill, every flag, where your data lives). Inside Claude Code, the front-door skill is
+> **`/fitcheck`**.
 
 ## The two directions
 
