@@ -13,7 +13,7 @@
  */
 import { z } from 'zod';
 import Anthropic from '@anthropic-ai/sdk';
-import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod';
+import { betaZodOutputFormat } from '@anthropic-ai/sdk/helpers/beta/zod';
 
 import { achievementsToPromptBlock } from '../src/achievements.js';
 import { GATE, DIMENSIONS, OVERALL } from './rubric.js';
@@ -82,12 +82,12 @@ export async function scoreOutput({ result, jobText, achievements, resumeText = 
 
   const verdicts = [];
   for (let i = 0; i < runs; i++) {
-    const response = await anthropic.messages.parse({
+    const response = await anthropic.beta.messages.parse({
       model,
       max_tokens: 4000,
       system: JUDGE_SYSTEM,
       messages: [{ role: 'user', content: user }],
-      output_config: { format: zodOutputFormat(JudgeVerdict) },
+      output_config: { format: betaZodOutputFormat(JudgeVerdict) },
     });
     if (response.parsed_output) verdicts.push(response.parsed_output);
   }
@@ -134,12 +134,12 @@ export async function comparePair({ a, b, jobText, achievements, resumeText = nu
 Favor honesty and the right selections over length — a longer output is not a better one.`,
   ].join('\n\n');
 
-  const response = await anthropic.messages.parse({
+  const response = await anthropic.beta.messages.parse({
     model,
     max_tokens: 2000,
     system: JUDGE_SYSTEM,
     messages: [{ role: 'user', content: user }],
-    output_config: { format: zodOutputFormat(PairVerdict) },
+    output_config: { format: betaZodOutputFormat(PairVerdict) },
   });
   const v = response.parsed_output || { winner: 'tie', reason: 'no verdict' };
   const winner = v.winner === 'tie' ? 'tie' : (v.winner === 'first' ? (swap ? 'b' : 'a') : (swap ? 'a' : 'b'));
