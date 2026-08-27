@@ -62,6 +62,95 @@ function finalize(c) {
   return { id: c.id, title: c.title, text };
 }
 
+/**
+ * Flatten one bank.json entry (see track/schema/bank-entry.schema.json) into the
+ * simple {id, title, text} the engine scores. We fold the entry's metrics, scope,
+ * tags, and — importantly — its `guardrails` into the text, so the matcher reasons
+ * over the full record AND knows what must not be claimed from each achievement.
+ */
+export function bankEntryToEntry(e) {
+  const parts = [];
+  if (e.raw_evidence) parts.push(String(e.raw_evidence).trim());
+
+  if (Array.isArray(e.metrics) && e.metrics.length) {
+    const m = e.metrics
+      .map((x) => {
+        const meta = [x.basis, x.confidence].filter(Boolean).join('; ');
+        return meta ? `${x.value} (${meta})` : x.value;
+      })
+      .filter(Boolean)
+      .join('; ');
+    if (m) parts.push(`Metrics: ${m}`);
+  }
+
+  if (e.scope && typeof e.scope === 'object') {
+    const s = [e.scope.role, e.scope.ownership, e.scope.team_size, e.scope.customers]
+      .filter(Boolean)
+      .join(', ');
+    if (s) parts.push(`Scope: ${s}`);
+  }
+
+  if (Array.isArray(e.tags) && e.tags.length) parts.push(`Tags: ${e.tags.join(', ')}`);
+
+  if (Array.isArray(e.guardrails) && e.guardrails.length) {
+    parts.push(`Must not claim: ${e.guardrails.join(' ')}`);
+  }
+
+  const title = e.title || e.id || 'achievement';
+  return { id: e.id || slugify(title), title, text: parts.join('\n').trim() };
+}
+
+/**
+ * Parse a bank.json file (the source of truth) into engine entries. Accepts a
+ * top-level array of bank entries, or an object wrapping one as {entries:[...]}
+ * or {bank:[...]}. Ids are kept unique.
+ * @param {string} jsonText
+ * @returns {Array<{id: string, title: string, text: string}>}
+ */
+export function parseBank(jsonText) {
+  let data;
+  try {
+    data = JSON.parse(jsonText);
+  } catch (err) {
+    throw new Error(`bank.json didn't parse as JSON: ${err.message}`);
+  }
+  const list = Array.isArray(data)
+    ? data
+    : Array.isArray(data?.entries)
+      ? data.entries
+      : Array.isArray(data?.bank)
+        ? data.bank
+        : null;
+  if (!list) throw new Error('bank.json must be an array of entries (or {entries:[...]}).');
+
+  const seen = new Map();
+  return list.map((e) => {
+    const entry = bankEntryToEntry(e);
+    let id = entry.id;
+    if (seen.has(id)) {
+      const n = seen.get(id) + 1;
+      seen.set(id, n);
+      id = `${id}-${n}`;
+    } else {
+      seen.set(id, 1);
+    }
+    return { ...entry, id };
+  });
+}
+
+/**
+ * Load entries from either format. The bank.json (JSON) is the source of truth;
+ * achievements.md (markdown) is the older hand-kept format, still supported.
+ * Detection: pass `json` explicitly (e.g. from the file extension), or let it
+ * sniff — content beginning with `[` or `{` is treated as JSON.
+ * @param {string} text
+ * @param {{json?: boolean|null}} [opts]
+ */
+export function loadAchievements(text, { json = null } = {}) {
+  const looksJson = json != null ? json : /^\s*[[{]/.test(text);
+  return looksJson ? parseBank(text) : parseAchievements(text);
+}
+
 /** Render the parsed bank back into a compact block for the prompt. */
 export function achievementsToPromptBlock(entries) {
   return entries

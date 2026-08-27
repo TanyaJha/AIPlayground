@@ -49,9 +49,11 @@ Flag: entries missing guardrails, bundled (non-atomic) entries, untagged entries
 without a basis, private detail marked public, or entries with no framing for a target the
 user is pursuing. Propose fixes; the user approves.
 
-### `export` — feed the engine
-Emit `achievements.md` (the `## Title` + body format `/curate`'s CLI parses) from the
-public-safe projection of the bank, so `node src/curate.js` can run on real data.
+### `export` (optional) — a plain-text copy
+`/curate` reads `bank.json` **directly** now, so you do not need this step. Offer it only if the
+user wants a human-readable `achievements.md` (the `## Title` + body format) to hand-edit or
+skim. When you do, emit the **resume-friendly** projection: drop anything an entry's
+`guardrails`/`visibility` marks as not-for-a-résumé (internal figures, customer names).
 
 ## Guardrails
 - Atomic entries only; one achievement each.

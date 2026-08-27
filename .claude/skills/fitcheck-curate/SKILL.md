@@ -19,15 +19,18 @@ engine (`projects/fitcheck/curate/src/engine.js`) so evals test exactly what shi
 - **Target JD** — a file or paste. **Where it comes from is Scout's job, not fitcheck's:**
   see `projects/fitcheck/SCOUT.md`. Usually career-ops surfaced it, or the capture extension
   grabbed it, or the user pasted it.
-- **Achievement bank** — the user's private bank (their `achievements.md`, or the master
-  context file). Private: run locally, never paste real customer data into a public place.
+- **Achievement bank** — the user's private `bank.json` (the source of truth; the engine reads
+  it directly). An older hand-kept `achievements.md` also works. Private: run locally, never
+  paste real customer data into a public place.
 - **Current résumé** (optional) — unlocks PROMOTE/DEMOTE verdicts.
 
 ## Run it
 From `projects/fitcheck/curate/` (needs `npm install` once and `ANTHROPIC_API_KEY`):
 ```
-node src/curate.js <job-file> --achievements <bank-file> [--resume <resume-file>] --json
+node src/curate.js <job-file> --achievements <bank.json> [--resume <resume-file>] --json
 ```
+`--achievements` takes the user's `bank.json` (an array of entries) directly — or an
+`achievements.md`. It auto-detects by extension/content.
 Default model `claude-opus-5` (override with `FITCHECK_MODEL`; `claude-sonnet-5` is cheaper).
 In a sandbox with no API key, say so plainly and have the user run it locally — do not fake a
 result.

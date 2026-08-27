@@ -17,7 +17,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Anthropic from '@anthropic-ai/sdk';
 
-import { parseAchievements } from './achievements.js';
+import { loadAchievements } from './achievements.js';
 import { runCurate, DEFAULT_MODEL } from './engine.js';
 import { renderResult } from './format.js';
 
@@ -44,8 +44,9 @@ Usage:
   node src/curate.js <job-file> [options]
 
 Options:
-  --achievements <file>   your achievement bank (default: ./achievements.md,
-                          falling back to the bundled example)
+  --achievements <file>   your achievement bank — bank.json (an array of entries)
+                          or an achievements.md (default: ./bank.json, then
+                          ./achievements.md, then the bundled example)
   --resume <file>         your current résumé — unlocks ADD/PROMOTE/DEMOTE
   --json                  print raw JSON instead of the formatted swap list
   -h, --help              show this
@@ -78,22 +79,37 @@ async function main() {
     fail(`Couldn't read the job file: ${args.job}`);
   }
 
-  // --- read achievements (explicit path, then ./achievements.md, then bundled sample) ---
+  // --- read the bank (explicit path, then ./bank.json, then ./achievements.md, then sample) ---
   let achText, achSource;
   if (args.achievements) {
     achText = readFileOr(args.achievements, null);
     if (achText == null) fail(`Couldn't read the achievements file: ${args.achievements}`);
     achSource = args.achievements;
   } else {
-    achText = readFileOr(path.resolve(process.cwd(), 'achievements.md'), null);
-    achSource = 'achievements.md';
+    // Prefer bank.json (the single source of truth), then a hand-kept markdown file.
+    achText = readFileOr(path.resolve(process.cwd(), 'bank.json'), null);
+    achSource = 'bank.json';
+    if (achText == null) {
+      achText = readFileOr(path.resolve(process.cwd(), 'achievements.md'), null);
+      achSource = 'achievements.md';
+    }
     if (achText == null) {
       achText = fs.readFileSync(path.join(HERE, '..', 'examples', 'achievements.sample.md'), 'utf8');
-      achSource = 'examples/achievements.sample.md (no achievements.md found — using the sample)';
+      achSource = 'examples/achievements.sample.md (no bank.json or achievements.md found — using the sample)';
     }
   }
-  const achievements = parseAchievements(achText);
-  if (achievements.length === 0) fail('No achievements found. Each one starts with a "## Title" line.');
+  // JSON if the file is named *.json, otherwise sniff the content.
+  const isJson = /\.json$/i.test(achSource) || /^\s*[[{]/.test(achText);
+  let achievements;
+  try {
+    achievements = loadAchievements(achText, { json: isJson });
+  } catch (err) {
+    fail(err.message);
+  }
+  if (achievements.length === 0) {
+    fail('No achievements found. Point --achievements at your bank.json (an array of ' +
+         'entries) or an achievements.md (each entry starts with a "## Title" line).');
+  }
 
   // --- optional résumé ---
   let resumeText = null;

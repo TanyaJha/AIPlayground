@@ -81,22 +81,9 @@ material** — an old résumé, a review, a brain-dump. Claude will:
 > "Save my bank to `~/fitcheck-data/bank.json`."
 
 This is the source of truth. Everything else is a projection of it, so it's worth doing well.
-Budget most of your 20 minutes here.
+Budget most of your 20 minutes here. **This one file is all you maintain** — `bank.json`.
 
-## Step 4 — export the bank for the engine  💬 IN CLAUDE
-
-The `curate` engine reads a trimmed, public-safe text file, not the rich `bank.json`. Ask Claude:
-
-> "Run `/bank export` and write `achievements.md` to `~/fitcheck-data/`."
-
-Now you have **two files, on purpose:**
-
-| File | What it is | Who reads it |
-|---|---|---|
-| `bank.json` | rich, private, guardrailed source of truth | `/tailor`, `/stories` |
-| `achievements.md` | trimmed, public-safe view | the `curate` engine (Step 5) |
-
-## Step 5 — point fitcheck at a real job  🖥️ or 💬
+## Step 4 — point fitcheck at a real job  🖥️ or 💬
 
 Save a job description you actually care about as `~/fitcheck-data/job.txt`. Then curate — two
 equivalent ways:
@@ -109,14 +96,15 @@ equivalent ways:
 **Direct (run the engine yourself):**  🖥️ TERMINAL
 ```bash
 cd projects/fitcheck/curate
-node src/curate.js ~/fitcheck-data/job.txt --achievements ~/fitcheck-data/achievements.md --json
+node src/curate.js ~/fitcheck-data/job.txt --achievements ~/fitcheck-data/bank.json --json
 ```
 
-That `--achievements <path>` **is** how you "point to your bank." (There's no stored config;
-you name the path, or you just tell Claude the folder.) The output is a **swap list**: which
-achievements to ADD / PROMOTE / KEEP / DEMOTE for this role, plus honest gaps.
+That `--achievements <path>` **is** how you "point to your bank" — you hand it your `bank.json`
+directly. (There's no stored config; you name the path, or you just tell Claude the folder.)
+The output is a **swap list**: which achievements to ADD / PROMOTE / KEEP / DEMOTE for this
+role, plus honest gaps.
 
-## Step 6 — grade, tailor, track  💬 IN CLAUDE
+## Step 5 — grade, tailor, track  💬 IN CLAUDE
 
 ```
 /grade      # score the swap list — a fabrication gate + the rubric. Don't send what fails.
@@ -158,8 +146,7 @@ AIPlayground/                     ← public repo, cloned. The machinery only.
     curate/   resume/   track/    ← the engines + skills + schemas
 
 ~/fitcheck-data/                  ← YOU create this. Private. Never committed.
-  bank.json                       ← your source of truth
-  achievements.md                 ← exported, engine-readable view
+  bank.json                       ← your source of truth — the ONE file you maintain
   job.txt                         ← the JD you're targeting
   applications.json               ← your outcome log
   *.docx                          ← rendered résumés

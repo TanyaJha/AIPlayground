@@ -101,7 +101,7 @@ bank, with a gap check.
 | Check quality before sending | `/grade` |
 | Track an application / outcome | `/track` |
 | Prep interview answers | `/stories` |
-| Run curate directly | `node curate/src/curate.js <job.txt> --achievements <bank>` |
+| Run curate directly | `node curate/src/curate.js <job.txt> --achievements <bank.json>` |
 | Render a résumé directly | `node resume/render.js <spec.json> <out.docx>` |
 
 ## Honest status

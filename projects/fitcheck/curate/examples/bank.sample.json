@@ -1,0 +1,47 @@
+[
+  {
+    "id": "migrated-auth-to-gke",
+    "title": "Migrated auth service to GKE",
+    "raw_evidence": "Led a 3-engineer team to move our identity service to Kubernetes on GKE, including a zero-downtime cutover for a service every other team depends on. (Fictional example for illustration.)",
+    "metrics": [
+      { "value": "deploy time 40m -> 6m", "basis": "CI pipeline timings before/after", "confidence": "hard" },
+      { "value": "zero downtime at cutover", "basis": "uptime monitor over the migration window", "confidence": "hard" }
+    ],
+    "scope": { "role": "Senior Engineer", "ownership": "led", "team_size": "3 engineers", "customers": "internal platform teams" },
+    "tags": ["kubernetes", "identity", "platform", "leadership"],
+    "guardrails": ["Led the migration; did not design the original auth service."],
+    "visibility": "public"
+  },
+  {
+    "id": "cut-oncall-pages",
+    "title": "Cut on-call pages by half",
+    "raw_evidence": "Owned a reliability push that halved overnight pages by fixing the three noisiest alert sources and adding autoremediation for the top failure mode. (Fictional example.)",
+    "metrics": [
+      { "value": "-52% overnight pages", "basis": "pager stats, quarter over quarter", "confidence": "estimate" }
+    ],
+    "scope": { "role": "Engineer", "ownership": "owned", "team_size": "solo with team review" },
+    "tags": ["reliability", "observability", "on-call"],
+    "guardrails": ["Improved existing alerting; did not build the paging system."],
+    "visibility": "public"
+  },
+  {
+    "id": "shipped-eval-harness",
+    "title": "Shipped an LLM eval harness",
+    "raw_evidence": "Built an adversarial LLM-as-judge harness that grades model outputs on a rubric and gates releases on a fabrication check, run three times and averaged to blunt position bias. (Fictional example.)",
+    "metrics": [
+      { "value": "caught 2 regressions pre-release", "basis": "release notes, first two months", "confidence": "directional" }
+    ],
+    "scope": { "role": "PM", "ownership": "owned", "team_size": "2 engineers" },
+    "tags": ["ai", "eval", "llm-as-judge", "quality"],
+    "guardrails": ["Framed the rubric and gate; engineers wrote the runner."],
+    "visibility": "public",
+    "framings": [
+      {
+        "framing_id": "ai-native",
+        "archetype": "ai-native",
+        "text": "Shipped an adversarial LLM eval harness that gates releases on a fabrication check (3x, averaged), catching regressions before they reach users.",
+        "approved": true
+      }
+    ]
+  }
+]
